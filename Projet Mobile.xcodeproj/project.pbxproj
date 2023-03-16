@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7941F1529C319EE00FD67C1 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1429C319EE00FD67C1 /* HomePageView.swift */; };
+		B7941F1729C3227A00FD67C1 /* VolunteerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1629C3227A00FD67C1 /* VolunteerView.swift */; };
+		B7941F1929C322FA00FD67C1 /* ManageFestivalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1829C322FA00FD67C1 /* ManageFestivalView.swift */; };
+		B7941F1B29C3256A00FD67C1 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1A29C3256A00FD67C1 /* Footer.swift */; };
+		B7941F1E29C32A6C00FD67C1 /* VolunteerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1D29C32A6C00FD67C1 /* VolunteerDTO.swift */; };
 		B7CF777529C076B20044CEDB /* Projet_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF777429C076B20044CEDB /* Projet_MobileApp.swift */; };
 		B7CF777729C076B20044CEDB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CF777629C076B20044CEDB /* ContentView.swift */; };
 		B7CF777929C076B20044CEDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CF777829C076B20044CEDB /* Assets.xcassets */; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B7941F1429C319EE00FD67C1 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		B7941F1629C3227A00FD67C1 /* VolunteerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerView.swift; sourceTree = "<group>"; };
+		B7941F1829C322FA00FD67C1 /* ManageFestivalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageFestivalView.swift; sourceTree = "<group>"; };
+		B7941F1A29C3256A00FD67C1 /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		B7941F1D29C32A6C00FD67C1 /* VolunteerDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerDTO.swift; sourceTree = "<group>"; };
 		B7CF777129C076B20044CEDB /* Projet Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Projet Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CF777429C076B20044CEDB /* Projet_MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Projet_MobileApp.swift; sourceTree = "<group>"; };
 		B7CF777629C076B20044CEDB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +81,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7941F1329C3192B00FD67C1 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				B7941F1429C319EE00FD67C1 /* HomePageView.swift */,
+				B7941F1629C3227A00FD67C1 /* VolunteerView.swift */,
+				B7941F1829C322FA00FD67C1 /* ManageFestivalView.swift */,
+				B7941F1A29C3256A00FD67C1 /* Footer.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		B7941F1C29C32A4E00FD67C1 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				B7941F1D29C32A6C00FD67C1 /* VolunteerDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		B7CF776829C076B20044CEDB = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +123,8 @@
 		B7CF777329C076B20044CEDB /* Projet Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				B7941F1C29C32A4E00FD67C1 /* DTO */,
+				B7941F1329C3192B00FD67C1 /* Content */,
 				B7CF777429C076B20044CEDB /* Projet_MobileApp.swift */,
 				B7CF777629C076B20044CEDB /* ContentView.swift */,
 				B7CF777829C076B20044CEDB /* Assets.xcassets */,
@@ -257,8 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7941F1B29C3256A00FD67C1 /* Footer.swift in Sources */,
 				B7CF777729C076B20044CEDB /* ContentView.swift in Sources */,
+				B7941F1729C3227A00FD67C1 /* VolunteerView.swift in Sources */,
+				B7941F1E29C32A6C00FD67C1 /* VolunteerDTO.swift in Sources */,
+				B7941F1529C319EE00FD67C1 /* HomePageView.swift in Sources */,
 				B7CF777529C076B20044CEDB /* Projet_MobileApp.swift in Sources */,
+				B7941F1929C322FA00FD67C1 /* ManageFestivalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
