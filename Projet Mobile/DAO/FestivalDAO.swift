@@ -10,7 +10,7 @@ import Foundation
 class FestivalDAO {
   private let url = "https://festiland-api.cluster-ig4.igpolytech.fr/festivals"
   
-  func getAll(token: String, completion: @escaping(Result<[Festival]?, Error>) -> Void) async -> Void {
+  func getAll(token: String, completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
     var request = URLRequest(url: URL(string: self.url)!)
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Content-type")

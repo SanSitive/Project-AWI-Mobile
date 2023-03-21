@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ConnectionView: View {
     
-    @State var email: String = ""
     @State var mdp: String = ""
+    @StateObject var authVM: AuthVM = AuthVM(id:0,prenom:"nil",nom:"nil",email:"nil",isAdmin: false)
     
     var body: some View {
         VStack(){
             Spacer()
             VStack(alignment: .center){
-                TextField("Email_placeholder", text: $email)
+                TextField("Email_placeholder", text: $authVM.email)
                 TextField("MDP_placeholder", text: $mdp)
+                Text("\(authVM.error)")
                 Button("Se connecter"){
-                    let result = AuthDAO.tryConnect(email: email, pwd: mdp, completion: <#T##(Result<AuthDTO?, Error>) -> Void#>)
+                    authVM.login(pwd:mdp){ success in
+                        if(success){
+                            //MOVE TO NEXT SCREEN
+                        }
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
-        
     }
 }
 
