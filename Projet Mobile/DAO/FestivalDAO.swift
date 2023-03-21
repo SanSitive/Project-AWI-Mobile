@@ -24,7 +24,7 @@ class FestivalDAO {
       Task {
         do {
           let decoded : [FestivalDTO]? = await JSONHelper.decode(data: data)
-          print(decoded)
+//          print(decoded)
           if let decoded = decoded {
             let festivals = FestivalDTO.festivalDTO2Festival(data: decoded)
             completion(.success(festivals))
