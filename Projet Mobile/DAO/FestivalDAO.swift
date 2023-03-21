@@ -14,7 +14,7 @@ class FestivalDAO {
     var request = URLRequest(url: URL(string: self.url)!)
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Content-type")
-    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     
     let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
       guard let data = data, error == nil else {
