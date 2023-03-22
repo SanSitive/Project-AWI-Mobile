@@ -28,7 +28,7 @@ class AuthDAO{
         request.httpBody = jsonData
         request.setValue("application/json", forHTTPHeaderField: "Content-type")
         
-        let dataTask = URLSession.shared.uploadTask(with: request, from: jsonData) { (data, response, error) in
+        /*let dataTask*/_ = URLSession.shared.uploadTask(with: request, from: jsonData) { (data, response, error) in
           guard let data = data, error == nil else {
             return completion(.failure(error!))
           }

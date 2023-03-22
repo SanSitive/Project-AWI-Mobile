@@ -30,7 +30,7 @@ class AuthVM: ObservableObject{
         Task {
             await AuthDAO.tryConnect(email: email, pwd: pwd){result in
                 switch result{
-                case .failure(let er):
+                case .failure(/*let er*/_):
                     DispatchQueue.main.async {
                         self.error = "mdp not working"
                         completion(false)
