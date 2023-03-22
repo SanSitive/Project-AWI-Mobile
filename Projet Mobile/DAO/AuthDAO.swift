@@ -16,8 +16,10 @@ struct AuthDTO : Codable {
     var isAdmin: Bool
 }
 
+let appSettings = MyEnvVariables()
+
 class AuthDAO{
-  private static let authUrl = URL(string: "https://festiland-api.cluster-ig4.igpolytech.fr/")!
+    private static let authUrl = URL(string: appSettings.API_URL)!
   
     static public func tryConnect(email: String, pwd: String, completion: @escaping(Result<AuthDTO?,Error>) -> Void) async -> Void {
         let jsonString = "{ \"email\": \"\(email)\", \"password\": \"\(pwd)\" }"

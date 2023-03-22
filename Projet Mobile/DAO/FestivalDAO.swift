@@ -7,14 +7,14 @@
 
 import Foundation
 
+
 class FestivalDAO {
-  private let url = "https://festiland-api.cluster-ig4.igpolytech.fr/festivals"
+    private let url = appSettings.API_URL
   
-  func getAll(token: String, completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
+  func getAll(completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
     var request = URLRequest(url: URL(string: self.url)!)
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Content-type")
-//    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     
     let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
       guard let data = data, error == nil else {

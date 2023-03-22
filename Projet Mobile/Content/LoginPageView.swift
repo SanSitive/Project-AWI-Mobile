@@ -10,8 +10,10 @@ import SwiftUI
 struct LoginPageView: View {
     @State private var email = ""
     @State private var password = ""
-
+//    @EnvironmentObject var appSettings : MyEnvVariables
+    
     var body: some View {
+        
         VStack {
             TextField("Email", text: $email)
                 .padding()
@@ -24,7 +26,9 @@ struct LoginPageView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             NavigationLink(destination: HomePageView()) {
-                Text("Se connecter")
+                Button("Se connecter"){
+                    
+                }
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.blue)
@@ -42,6 +46,7 @@ struct LoginPageView: View {
             Spacer()
 
             HStack {
+                Text(appSettings.API_URL)
                 Text("Pas encore inscrit ?")
                 NavigationLink(destination: SignInPageView()) {
                     Text("S'inscrire")

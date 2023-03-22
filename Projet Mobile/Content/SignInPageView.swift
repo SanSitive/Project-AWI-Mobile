@@ -62,8 +62,6 @@ struct SignInPageView: View {
 
 struct SignInPageView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            SignInPageView()
-        }
+        SignInPageView()
     }
 }
