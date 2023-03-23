@@ -1,5 +1,5 @@
 //
-//  FestivalIntent.swift
+//  ZoneListIntent.swift
 //  Projet Mobile
 //
 //  Created by etud on 23/03/2023.
@@ -8,22 +8,22 @@
 import Foundation
 import SwiftUI
 
-struct FestivalIntent {
+struct ZoneListIntent {
     
     let API_URL = MyEnvVariables().API_URL
     
-    @ObservedObject private var model : FestivalVM
+    @ObservedObject private var model : ZoneListVM
     
-    init(model: FestivalVM){
+    init(model: ZoneListVM){
         self.model = model
     }
     
    // @ObservedObject private var state : UserListViewModel
     
-    func getFestival(id: Int) async {
-        self.model.state = .loadingFestival
-        
-        guard let url = URL(string: API_URL+"/festivals/"+String(id))else {
+    func getZones() async {
+        self.model.state = .loadingZones
+        debugPrint(API_URL+"zones")
+        guard let url = URL(string: API_URL+"zones") else {
             debugPrint("bad url getFestivals")
             return
         }
@@ -50,14 +50,14 @@ struct FestivalIntent {
                // model.state = .loadedUsers([UserDTO(idUtilisateur: 11, nom: "truc", prenom: "mgd", email: "ege", mdp: "fefe", isAdmin: 1)])
                 debugPrint("je suis conne")
                 debugPrint("\(sdata)")
-                guard let decoded : FestivalDTO = await JSONHelper.decode(data: data) else{
+                guard let decoded : [ZoneDTO] = await JSONHelper.decode(data: data) else{
                     debugPrint("mauvaise récup données")
                     return
                 }
                 
                 debugPrint("donneees decodeess")
                 debugPrint(decoded)
-                model.state = .loadedFestival(decoded)
+                model.state = .loadedZones(decoded)
                 
             }
             else{
@@ -67,18 +67,6 @@ struct FestivalIntent {
         catch{
             debugPrint("bad request")
         }
-    }
-    
-    func updateFestival() async {
-        //Should make the update call to update it
-    }
-    
-    func deleteFestival() async {
-        //Should make the delete call to delete it
-    }
-    
-    static func createFestival() async {
-        //Should make the create call to create it
     }
     
 }
