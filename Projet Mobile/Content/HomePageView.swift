@@ -14,8 +14,8 @@ struct HomePageView: View {
                             Text("Welcome to the Festival App!")
                                 .font(.largeTitle)
                                 .padding()
-                            NavigationLink(destination: ManageFestivalView()) {
-                                Text("Gérer festival")
+                            NavigationLink(destination: FestivalListView(viewModel: FestivalListVM(festivals: []) )) {
+                                Text("Liste de festival")
                                     .font(.title)
                                     .foregroundColor(.white)
                                     .padding()

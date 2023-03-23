@@ -7,12 +7,11 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @StateObject var appSettings = MyEnvVariables()
     
-    
     var body: some View {
-        
         LoginPageView().environmentObject(appSettings)
     }
 }

@@ -9,31 +9,31 @@ import Foundation
 
 
 class FestivalDAO {
-    private let url = appSettings.API_URL
-  
-  func getAll(completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
-    var request = URLRequest(url: URL(string: self.url)!)
-    request.httpMethod = "GET"
-    request.setValue("application/json", forHTTPHeaderField: "Content-type")
-    
-    let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-      guard let data = data, error == nil else {
-        return completion(.failure(error!))
-      }
-      print(String(data: data, encoding: .utf8)!)
-      Task {
-        do {
-          let decoded : [FestivalDTO]? = await JSONHelper.decode(data: data)
-//          print(decoded)
-          if let decoded = decoded {
-            let festivals = FestivalDTO.festivalDTO2Festival(data: decoded)
-            completion(.success(festivals))
-          } else {
-            //completion(.failure())
-          }
-        }
-      }
-    }
-    dataTask.resume()
-  }
+//    private let url = appSettings.API_URL
+//  
+//  func getAll(completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
+//    var request = URLRequest(url: URL(string: self.url)!)
+//    request.httpMethod = "GET"
+//    request.setValue("application/json", forHTTPHeaderField: "Content-type")
+//    
+//    let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//      guard let data = data, error == nil else {
+//        return completion(.failure(error!))
+//      }
+//      print(String(data: data, encoding: .utf8)!)
+//      Task {
+//        do {
+//          let decoded : [FestivalDTO]? = await JSONHelper.decode(data: data)
+////          print(decoded)
+//          if let decoded = decoded {
+//            let festivals = FestivalDTO.festivalDTO2Festival(data: decoded)
+//            completion(.success(festivals))
+//          } else {
+//            //completion(.failure())
+//          }
+//        }
+//      }
+//    }
+//    dataTask.resume()
+//  }
 }

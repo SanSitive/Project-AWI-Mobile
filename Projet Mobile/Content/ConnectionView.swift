@@ -19,11 +19,13 @@ struct ConnectionView: View {
                 TextField("Email_placeholder", text: $authVM.email)
                 TextField("MDP_placeholder", text: $mdp)
                 Text("\(authVM.error)")
-                Button("Se connecter"){
-                    authVM.login(pwd:mdp){ success in
-                        if(success){
-                            //MOVE TO NEXT SCREEN
-                        }
+                NavigationLink(destination: HomePageView()){
+                    Button("Se connecter"){
+    //                    authVM.login(pwd:mdp){ success in
+    //                        if(success){
+    //                            //MOVE TO NEXT SCREEN
+    //                        }
+    //                    }
                     }
                 }
                 Spacer()

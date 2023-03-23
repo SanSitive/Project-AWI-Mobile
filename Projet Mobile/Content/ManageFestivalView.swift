@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ManageFestivalView: View {
     var body: some View {
-        Text("ManageFestivalView")
+        FestivalListView(viewModel: FestivalListVM(festivals: []))
     }
 }
 

@@ -10,53 +10,56 @@ import SwiftUI
 struct LoginPageView: View {
     @State private var email = ""
     @State private var password = ""
-//    @EnvironmentObject var appSettings : MyEnvVariables
     
     var body: some View {
-        
-        VStack {
-            TextField("Email", text: $email)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-
-            SecureField("Password", text: $password)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            NavigationLink(destination: HomePageView()) {
-                Button("Se connecter"){
-                    
-                }
-                    .frame(maxWidth: .infinity)
+        NavigationStack{
+            VStack {
+                TextField("Email", text: $email)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
 
-            NavigationLink(destination: Text("ResetPasswordView")) {
-                Text("Mot de passe oublié ?")
-                    .foregroundColor(.blue)
-            }
-            .padding()
+                SecureField("Password", text: $password)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
 
-            Spacer()
+                NavigationLink(destination: HomePageView()) {
+    //                
+                    Button("Se connecter"){
+                        debugPrint("test")
+                        
+                    }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
 
-            HStack {
-                Text(appSettings.API_URL)
-                Text("Pas encore inscrit ?")
-                NavigationLink(destination: SignInPageView()) {
-                    Text("S'inscrire")
+                NavigationLink(destination: Text("ResetPasswordView")) {
+                    Text("Mot de passe oublié ?")
                         .foregroundColor(.blue)
                 }
+                .padding()
+
+                Spacer()
+
+                HStack {
+    //                Text(appSettings.API_URL)
+                    Text("Pas encore inscrit ?")
+                    NavigationLink(destination: SignInPageView()) {
+                        Text("S'inscrire")
+                            .foregroundColor(.blue)
+                    }
+                }
+                .padding(.bottom)
             }
-            .padding(.bottom)
+            .padding()
+            .navigationTitle("Se connecter")
         }
-        .padding()
-        .navigationTitle("Se connecter")
+        
     }
 }
 

@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct Projet_MobileApp: App {
     var body: some Scene {
-        WindowGroup {
-            ConnectionView()
+        WindowGroup{
+            LoginPageView()
         }
     }
 }
