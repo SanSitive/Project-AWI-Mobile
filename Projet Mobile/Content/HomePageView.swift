@@ -32,7 +32,7 @@ struct HomePageView: View {
                             }
                             Spacer()
                             Footer()
-                            Spacer()
+                            
                         }
                     }
         
