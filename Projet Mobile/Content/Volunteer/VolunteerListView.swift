@@ -10,6 +10,7 @@ import SwiftUI
 struct VolunteerListView: View {
     @StateObject var volunteerListVM = VolunteerListVM()
     @State private var showCreateVolunteer = false
+    @Environment(\.editMode) var editMode
 
     var body: some View {
         NavigationView {
@@ -28,12 +29,18 @@ struct VolunteerListView: View {
                 }
             }
             .navigationTitle("Bénévoles")
-            .navigationBarItems(leading: EditButton(),
-                                trailing: Button(action: {
-                                    showCreateVolunteer.toggle()
-                                }) {
-                                    Image(systemName: "plus")
-                                })
+            .navigationBarItems(
+                            leading: Button(action: {
+                                editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
+                            }) {
+                                Text(editMode?.wrappedValue == .active ? "Done" : "Edit")
+                            },
+                            trailing: Button(action: {
+                                showCreateVolunteer.toggle()
+                            }) {
+                                Image(systemName: "plus")
+                            }
+                        )
             .sheet(isPresented: $showCreateVolunteer) {
                 CreateVolunteerView(volunteerListVM: volunteerListVM)
             }
