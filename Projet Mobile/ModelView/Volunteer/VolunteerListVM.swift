@@ -2,46 +2,105 @@
 //  VolunteerListVM.swift
 //  Projet Mobile
 //
-//  Created by etud on 27/03/2023.
+//  Created by Lexay on 27/03/2023.
 //
 
 import Foundation
+import SwiftUI
 
-class VolunteerListViewModel: ObservableObject {
+class VolunteerListVM: ObservableObject {
     @Published private(set) var volunteers: [VolunteerVM] = []
     private let dao = VolunteerDAO()
-    
-    func process(intent: VolunteerIntent) async {
-        switch intent {
-        case .create(let volunteer):
-            do {
-                let id = try await dao.createVolunteer(volunteer: volunteer.volunteerDTO)
-                let id = try await dao.createVolunteer(volunteer: <#T##VolunteerVM#>, completion: <#T##(Result<Int, Error>) -> Void#>)
-                volunteer.id = id
-                volunteers.append(volunteer)
-            } catch {
-                // Handle error
-            }
-        case .update(let volunteer):
-            do {
-                let success = try await dao.update(volunteer: volunteer.volunteerDTO)
-                if success {
-                    if let index = volunteers.firstIndex(where: { $0.id == volunteer.id }) {
-                        volunteers[index] = volunteer
-                    }
+
+    func fetchVolunteers() {
+        dao.fetchVolunteers { result in
+            switch result {
+            case .success(let fetchedVolunteers):
+                DispatchQueue.main.async {
+                    self.volunteers = fetchedVolunteers
                 }
-            } catch {
-                // Handle error
-            }
-        case .delete(let id):
-            do {
-                let success = try await dao.delete(id: id)
-                if success {
-                    volunteers.removeAll { $0.id == id }
-                }
-            } catch {
-                // Handle error
+            case .failure(let error):
+                print("Error fetching volunteers: \(error)")
             }
         }
     }
+    
+    func appendVolunteer(_ volunteer: VolunteerVM) {
+        self.volunteers.append(volunteer)
+    }
+    
+    func updateVolunteer(_ volunteer: VolunteerVM) {
+        if let index = self.volunteers.firstIndex(where: { $0.id == volunteer.id }) {
+            self.volunteers[index] = volunteer
+        }
+    }
+    
+    func removeVolunteer(withId id: Int) {
+        self.volunteers.removeAll { $0.id == id }
+    }
 }
+
+
+
+//class VolunteerListVM: ObservableObject {
+//    @Published private(set) var volunteers: [VolunteerVM] = []
+//    private let dao = VolunteerDAO()
+//
+//    func fetchVolunteers() {
+//        dao.fetchVolunteers { result in
+//            switch result {
+//            case .success(let fetchedVolunteers):
+//                DispatchQueue.main.async {
+//                    self.volunteers = fetchedVolunteers
+//                }
+//            case .failure(let error):
+//                print("Error fetching volunteers: \(error)")
+//            }
+//        }
+//    }
+//
+//    func process(intent: VolunteerIntent) {
+//        switch intent {
+//        case .create(let volunteer):
+//            dao.createVolunteer(volunteer: volunteer) { result in
+//                switch result {
+//                case .success(let id):
+//                    DispatchQueue.main.async {
+//                        volunteer.id = id
+//                        self.volunteers.append(volunteer)
+//                    }
+//                case .failure(let error):
+//                    print("Error creating volunteer: \(error)")
+//                }
+//            }
+//        case .update(let volunteer):
+//            dao.updateVolunteer(volunteer: volunteer) { result in
+//                switch result {
+//                case .success(let success):
+//                    if success {
+//                        DispatchQueue.main.async {
+//                            if let index = self.volunteers.firstIndex(where: { $0.id == volunteer.id }) {
+//                                self.volunteers[index] = volunteer
+//                            }
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("Error updating volunteer: \(error)")
+//                }
+//            }
+//        case .delete(let id):
+//            dao.deleteVolunteer(id: id) { result in
+//                switch result {
+//                case .success(let success):
+//                    if success {
+//                        DispatchQueue.main.async {
+//                            self.volunteers.removeAll { $0.id == id }
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("Error deleting volunteer: \(error)")
+//                }
+//            }
+//        }
+//    }
+//}

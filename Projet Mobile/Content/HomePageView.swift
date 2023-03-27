@@ -22,7 +22,7 @@ struct HomePageView: View {
                                     .background(Color.blue)
                                     .cornerRadius(10)
                             }
-                            NavigationLink(destination: VolunteerView()) {
+                            NavigationLink(destination: VolunteerListView()) {
                                 Text("Bénévole")
                                     .font(.title)
                                     .foregroundColor(.white)
