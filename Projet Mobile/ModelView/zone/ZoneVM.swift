@@ -32,6 +32,10 @@ class ZoneVM: ObservableObject, Hashable, Equatable{
         self.label = zone.label
     }
     
+    init(label: String){
+        self.label = label
+    }
+    
     static func == (lhs: ZoneVM, rhs: ZoneVM) -> Bool {
         return lhs.label == rhs.label
     }

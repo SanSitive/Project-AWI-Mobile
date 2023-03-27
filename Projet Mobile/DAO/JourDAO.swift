@@ -1,42 +1,42 @@
 //
-//  VolunteerDAO.swift
+//  JourDAO.swift
 //  Projet Mobile
 //
-//  Created by Lexay on 24/03/2023.
+//  Created by etud on 27/03/2023.
 //
 
 import Foundation
 
-class VolunteerDAO {
-    private let baseURL = MyEnvVariables().API_URL + "benevoles"
+class JourDAO {
+    private let baseURL = MyEnvVariables().API_URL + "jours"
 
-    func fetchVolunteers(completion: @escaping (Result<[VolunteerVM], Error>) -> Void) {
+    func fetchJours(completion: @escaping (Result<[JourVM], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
         }
         
         Task {
-            switch await URLSession.shared.getJSON(from: url) as Result<[VolunteerDTO], APIError> {
-            case .success(let volunteerDTOs):
-                let volunteers = volunteerDTOs.map { $0.toModel() }
-                completion(.success(volunteers))
+            switch await URLSession.shared.getJSON(from: url) as Result<[JourDTO], APIError> {
+            case .success(let jourDTOs):
+                let jours = jourDTOs.map { $0.toModel() }
+                completion(.success(jours))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
 
-    func createVolunteer(volunteer: VolunteerVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createJour(jour: JourVM, completion: @escaping (Result<Int, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
         }
         
-        let volunteerDTO = VolunteerDTO.fromModel(volunteer)
+        let jourDTO = JourDTO.fromModel(jour)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: volunteerDTO) as Result<Int, APIError> {
+            switch await URLSession.shared.create(from: url, element: jourDTO) as Result<Int, APIError> {
             case .success(let id):
                 completion(.success(id))
             case .failure(let error):
@@ -45,16 +45,16 @@ class VolunteerDAO {
         }
     }
 
-    func updateVolunteer(volunteer: VolunteerVM, completion: @escaping (Result<Bool, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/\(volunteer.id)") else {
+    func updateJour(jour: JourVM, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/\(jour.id)") else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
         }
         
-        let volunteerDTO = VolunteerDTO.fromModel(volunteer)
+        let jourDTO = JourDTO.fromModel(jour)
 
         Task {
-            switch await URLSession.shared.update(from: url, element: volunteerDTO) as Result<Bool, APIError> {
+            switch await URLSession.shared.update(from: url, element: jourDTO) as Result<Bool, APIError> {
             case .success(let success):
                 completion(.success(success))
             case .failure(let error):
@@ -63,7 +63,7 @@ class VolunteerDAO {
         }
     }
 
-    func deleteVolunteer(id: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func deleteJour(id: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/\(id)") else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -78,4 +78,10 @@ class VolunteerDAO {
             }
         }
     }
+    
+    
 }
+
+
+
+

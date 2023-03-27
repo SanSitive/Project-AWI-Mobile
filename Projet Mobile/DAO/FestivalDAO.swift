@@ -7,33 +7,81 @@
 
 import Foundation
 
-
 class FestivalDAO {
-//    private let url = appSettings.API_URL
-//  
-//  func getAll(completion: @escaping(Result<[FestivalVM]?, Error>) -> Void) async -> Void {
-//    var request = URLRequest(url: URL(string: self.url)!)
-//    request.httpMethod = "GET"
-//    request.setValue("application/json", forHTTPHeaderField: "Content-type")
-//    
-//    let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//      guard let data = data, error == nil else {
-//        return completion(.failure(error!))
-//      }
-//      print(String(data: data, encoding: .utf8)!)
-//      Task {
-//        do {
-//          let decoded : [FestivalDTO]? = await JSONHelper.decode(data: data)
-////          print(decoded)
-//          if let decoded = decoded {
-//            let festivals = FestivalDTO.festivalDTO2Festival(data: decoded)
-//            completion(.success(festivals))
-//          } else {
-//            //completion(.failure())
-//          }
-//        }
-//      }
-//    }
-//    dataTask.resume()
-//  }
+    private let baseURL = MyEnvVariables().API_URL + "festivals"
+
+    func fetchFestivals(completion: @escaping (Result<[FestivalVM], Error>) -> Void) {
+        guard let url = URL(string: baseURL) else {
+            completion(.failure(APIError.urlNotFound(baseURL)))
+            return
+        }
+        
+        Task {
+            switch await URLSession.shared.getJSON(from: url) as Result<[FestivalDTO], APIError> {
+            case .success(let festivalDTOs):
+                let festivals = festivalDTOs.map { $0.toModel() }
+                completion(.success(festivals))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func createFestival(festival: FestivalVM, completion: @escaping (Result<Int, Error>) -> Void) {
+        guard let url = URL(string: baseURL) else {
+            completion(.failure(APIError.urlNotFound(baseURL)))
+            return
+        }
+        
+        let festivalDTO = FestivalDTO.fromModel(festival)
+
+        Task {
+            switch await URLSession.shared.create(from: url, element: festivalDTO) as Result<Int, APIError> {
+            case .success(let id):
+                completion(.success(id))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func updateFestival(festival: FestivalVM, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/\(festival.id)") else {
+            completion(.failure(APIError.urlNotFound(baseURL)))
+            return
+        }
+        
+        let festivalDTO = FestivalDTO.fromModel(festival)
+
+        Task {
+            switch await URLSession.shared.update(from: url, element: festivalDTO) as Result<Bool, APIError> {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func deleteFestival(id: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/\(id)") else {
+            completion(.failure(APIError.urlNotFound(baseURL)))
+            return
+        }
+
+        Task {
+            switch await URLSession.shared.delete(from: url, id: id) as Result<Bool, APIError> {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
 }
+
+
+
+

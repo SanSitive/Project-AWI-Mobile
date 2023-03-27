@@ -7,11 +7,34 @@
 
 import Foundation
 
-struct FestivalDTO : Decodable{
-  var id : Int
-  var nom : String
-  var annee : Int
-  var isActive : Bool
+struct FestivalDTO : Codable{
+    var id : Int
+    var nom : String
+    var annee : Int
+    var isActive : Bool
+    
+    init(festival: FestivalVM) {
+        self.id = festival.id
+        self.nom = festival.nom
+        self.annee = festival.annee
+        self.isActive = festival.isActive
+    }
+
+    init(id: Int, nom: String, annee: Int, isActive: Bool) {
+        self.id = id
+        self.nom = nom
+        self.annee = annee
+        self.isActive = isActive
+    }
+
+    func toModel() -> FestivalVM {
+        return FestivalVM(festival: self)
+    }
+
+    static func fromModel(_ model: FestivalVM) -> FestivalDTO {
+        return FestivalDTO(festival: model)
+    }
+    
     
 }
 
