@@ -38,7 +38,6 @@ class FestivalVM: ObservableObject, Hashable, Equatable{
         self.isActive = festival.isActive
     }
     
-    
     static func == (lhs: FestivalVM, rhs: FestivalVM) -> Bool {
         return lhs.id == rhs.id
     }
