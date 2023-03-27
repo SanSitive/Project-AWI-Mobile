@@ -8,6 +8,52 @@
 import SwiftUI
 
 struct VolunteerListView: View {
+    @StateObject var volunteerListVM = VolunteerListVM()
+    @State private var showCreateVolunteer = false
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(volunteerListVM.volunteers) { volunteer in
+                    NavigationLink(destination: VolunteerView(volunteer: volunteer)) {
+                        Text("\(volunteer.prenom) \(volunteer.nom)")
+                    }
+                }
+                .onDelete { indexSet in
+                    //TODO: attention ça supprime directement sans confirmation !!!
+                    for index in indexSet {
+                        let id = volunteerListVM.volunteers[index].id
+                        VolunteerIntent.delete(id, volunteerListVM).process()
+                    }
+                }
+            }
+            .navigationTitle("Bénévoles")
+            .navigationBarItems(leading: EditButton(),
+                                trailing: Button(action: {
+                                    showCreateVolunteer.toggle()
+                                }) {
+                                    Image(systemName: "plus")
+                                })
+            .sheet(isPresented: $showCreateVolunteer) {
+                CreateVolunteerView(volunteerListVM: volunteerListVM)
+            }
+        }
+        .onAppear {
+            volunteerListVM.fetchVolunteers()
+        }
+    }
+}
+
+struct VolunteerListView_Previews: PreviewProvider {
+    static var previews: some View {
+        VolunteerListView()
+    }
+}
+
+/*
+import SwiftUI
+
+struct VolunteerListView: View {
     @ObservedObject var volunteerListVM: VolunteerListVM
     
     init() {
@@ -59,3 +105,4 @@ struct VolunteerListView_Previews: PreviewProvider {
         VolunteerListView()
     }
 }
+*/
