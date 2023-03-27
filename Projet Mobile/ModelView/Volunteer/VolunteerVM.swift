@@ -15,7 +15,7 @@ protocol VolunteerObserver {
     func change(isAdmin: Bool)
 }
 
-class VolunteerVM : ObservableObject {
+class VolunteerVM : ObservableObject, Identifiable {
     
     var observer: VolunteerObserver?
     @Published var id: Int

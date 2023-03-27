@@ -60,6 +60,10 @@
 		B7E914DE29D179780084B614 /* CreneauState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914DD29D179780084B614 /* CreneauState.swift */; };
 		B7E914E129D18A410084B614 /* VolunteerIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914E029D18A410084B614 /* VolunteerIntent.swift */; };
 		B7E914E429D18A810084B614 /* VolunteerListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914E329D18A810084B614 /* VolunteerListVM.swift */; };
+		B7E914E629D190000084B614 /* VolunteerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914E529D190000084B614 /* VolunteerListView.swift */; };
+		B7E914E829D190B00084B614 /* VolunteerFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914E729D190B00084B614 /* VolunteerFormView.swift */; };
+		B7E914EA29D191030084B614 /* CreateVolunteerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914E929D191030084B614 /* CreateVolunteerView.swift */; };
+		B7E914ED29D1A6C20084B614 /* VolunteerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914EC29D1A6C20084B614 /* VolunteerState.swift */; };
 		B7FB26FA29CB07990081C181 /* SignInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26F929CB07990081C181 /* SignInPageView.swift */; };
 		B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FC29CB08C10081C181 /* alert.service.swift */; };
 		B7FB26FF29CB0D6E0081C181 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */; };
@@ -143,6 +147,10 @@
 		B7E914DD29D179780084B614 /* CreneauState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauState.swift; sourceTree = "<group>"; };
 		B7E914E029D18A410084B614 /* VolunteerIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerIntent.swift; sourceTree = "<group>"; };
 		B7E914E329D18A810084B614 /* VolunteerListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListVM.swift; sourceTree = "<group>"; };
+		B7E914E529D190000084B614 /* VolunteerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListView.swift; sourceTree = "<group>"; };
+		B7E914E729D190B00084B614 /* VolunteerFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerFormView.swift; sourceTree = "<group>"; };
+		B7E914E929D191030084B614 /* CreateVolunteerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVolunteerView.swift; sourceTree = "<group>"; };
+		B7E914EC29D1A6C20084B614 /* VolunteerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerState.swift; sourceTree = "<group>"; };
 		B7FB26F929CB07990081C181 /* SignInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageView.swift; sourceTree = "<group>"; };
 		B7FB26FC29CB08C10081C181 /* alert.service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.service.swift; sourceTree = "<group>"; };
 		B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
@@ -180,6 +188,7 @@
 		B721806029CC66A1003EFB19 /* State */ = {
 			isa = PBXGroup;
 			children = (
+				B7E914EB29D1A6AB0084B614 /* Volunteer */,
 				B7E914DC29D1796A0084B614 /* Creneau */,
 				B7E914CB29D176C40084B614 /* Jour */,
 				B721807E29CC9D4B003EFB19 /* Zone */,
@@ -438,6 +447,9 @@
 			isa = PBXGroup;
 			children = (
 				B7941F1629C3227A00FD67C1 /* VolunteerView.swift */,
+				B7E914E529D190000084B614 /* VolunteerListView.swift */,
+				B7E914E729D190B00084B614 /* VolunteerFormView.swift */,
+				B7E914E929D191030084B614 /* CreateVolunteerView.swift */,
 			);
 			path = Volunteer;
 			sourceTree = "<group>";
@@ -519,6 +531,14 @@
 			isa = PBXGroup;
 			children = (
 				B7E914E029D18A410084B614 /* VolunteerIntent.swift */,
+			);
+			path = Volunteer;
+			sourceTree = "<group>";
+		};
+		B7E914EB29D1A6AB0084B614 /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				B7E914EC29D1A6C20084B614 /* VolunteerState.swift */,
 			);
 			path = Volunteer;
 			sourceTree = "<group>";
@@ -670,11 +690,13 @@
 				B7941F1B29C3256A00FD67C1 /* Footer.swift in Sources */,
 				B7941F2629C9930C00FD67C1 /* AuthDAO.swift in Sources */,
 				B7E914BE29CDC70A0084B614 /* VolunteerDAO.swift in Sources */,
+				B7E914E829D190B00084B614 /* VolunteerFormView.swift in Sources */,
 				B7CF777729C076B20044CEDB /* ContentView.swift in Sources */,
 				B7E914C729D173180084B614 /* JourVM.swift in Sources */,
 				B7941F1729C3227A00FD67C1 /* VolunteerView.swift in Sources */,
 				B7FB26FF29CB0D6E0081C181 /* LoginPageView.swift in Sources */,
 				B7E914B329CCA03C0084B614 /* ZoneListState.swift in Sources */,
+				B7E914EA29D191030084B614 /* CreateVolunteerView.swift in Sources */,
 				B721808429CC9E2B003EFB19 /* ZoneState.swift in Sources */,
 				B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */,
 				B721807929CC890A003EFB19 /* FestivalItemView.swift in Sources */,
@@ -682,6 +704,7 @@
 				B721806629CC689A003EFB19 /* FestivalState.swift in Sources */,
 				B7FB270529CB17F10081C181 /* MyEnvVariables.swift in Sources */,
 				B7E914BC29CDBC5D0084B614 /* VolunteerVM.swift in Sources */,
+				B7E914E629D190000084B614 /* VolunteerListView.swift in Sources */,
 				B7941F1E29C32A6C00FD67C1 /* VolunteerDTO.swift in Sources */,
 				B721806329CC67CB003EFB19 /* FestivalDTO.swift in Sources */,
 				B7941F2E29C9AB9F00FD67C1 /* JWTDecode.swift in Sources */,
@@ -714,6 +737,7 @@
 				B721807229CC7C5A003EFB19 /* FestivalIntent.swift in Sources */,
 				B7941F1929C322FA00FD67C1 /* ManageFestivalView.swift in Sources */,
 				B7E914D029D177A10084B614 /* JourIntent.swift in Sources */,
+				B7E914ED29D1A6C20084B614 /* VolunteerState.swift in Sources */,
 				B721806A29CC6B8A003EFB19 /* FestivalListIntent.swift in Sources */,
 				B721807429CC7D32003EFB19 /* FestivalListState.swift in Sources */,
 				B7E914CD29D176D20084B614 /* JourState.swift in Sources */,
