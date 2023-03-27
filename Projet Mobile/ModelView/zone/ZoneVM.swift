@@ -41,7 +41,7 @@ class ZoneVM: ObservableObject, Hashable, Equatable{
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.label)
+        hasher.combine(self.label)
     }
     
     

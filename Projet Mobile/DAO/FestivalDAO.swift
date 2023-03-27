@@ -21,8 +21,7 @@ class FestivalDAO {
             case .success(let festivalDTOs):
                 let festivals = festivalDTOs.map { $0.toModel() }
                 completion(.success(festivals))
-            case .failure(let error):
-                completion(.failure(error))
+            case .failure(let error):                completion(.failure(error))
             }
         }
     }
