@@ -31,8 +31,6 @@ class FestivalListVM : ObservableObject, FestivalModelObserver {
                 debugPrint("TrackViewModel: ready state")
                 debugPrint("--------------------------------------")
                 break
-            default:
-                break
             }
         }
     }

@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum VolunteerState {
+    case idle
+    case loading
+    case loaded([VolunteerVM])
+    case error(Error)
+}
