@@ -9,7 +9,7 @@ import Foundation
 
 class CreneauVM: ObservableObject, Hashable, Equatable{
     @Published var id : Int
-    @Published var id_jour : Int
+    @Published var id_jour : Int
     @Published var heureDebut : Int
     @Published var heureFin : Int
     @Published var minuteDebut : Int

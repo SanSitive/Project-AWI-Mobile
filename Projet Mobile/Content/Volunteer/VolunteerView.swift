@@ -17,33 +17,59 @@ struct VolunteerView: View {
             if isEditMode {
                 VolunteerFormView(volunteer: volunteer, isEditMode: $isEditMode)
             } else {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Text("Nom :")
-                            .font(.headline)
-                        Spacer()
-                        Text(volunteer.nom)
+                VStack {
+                    Spacer()
+                    Image(systemName: "person.crop.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 10) {
+//                        HStack {
+//                            Text("Nom :")
+//                                .font(.headline)
+//                            Spacer()
+//                            Text(volunteer.nom)
+//                        }
+//                        HStack {
+//                            Text("Prénom :")
+//                                .font(.headline)
+//                            Spacer()
+//                            Text(volunteer.prenom)
+//                        }
+//                        HStack {
+//                            Text("Email :")
+//                                .font(.headline)
+//                            Spacer()
+//                            Text(volunteer.email)
+//                        }
+//                        HStack {
+//                            Text("Administrateur :")
+//                                .font(.headline)
+//                            Spacer()
+//                            Text(volunteer.isAdmin ? "Oui" : "Non")
+//                        }
+
+                        Text("Nom: \(volunteer.nom)")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        Text("Prénom: \(volunteer.prenom)")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        Text("Email: \(volunteer.email)")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        Text("Administrateur: \(volunteer.isAdmin ? "Oui" : "Non")")
+                            .font(.title2)
+                            .fontWeight(.bold)
                     }
-                    HStack {
-                        Text("Prénom :")
-                            .font(.headline)
-                        Spacer()
-                        Text(volunteer.prenom)
-                    }
-                    HStack {
-                        Text("Email :")
-                            .font(.headline)
-                        Spacer()
-                        Text(volunteer.email)
-                    }
-                    HStack {
-                        Text("Administrateur :")
-                            .font(.headline)
-                        Spacer()
-                        Text(volunteer.isAdmin ? "Oui" : "Non")
-                    }
+                    .padding()
+                    Spacer()
                 }
-                .padding()
+                .navigationBarTitle(Text("Volunteer"), displayMode: .inline)
             }
         }
         .navigationBarItems(trailing: Button(action: {
@@ -58,3 +84,4 @@ struct VolunteerView: View {
         }
     }
 }
+

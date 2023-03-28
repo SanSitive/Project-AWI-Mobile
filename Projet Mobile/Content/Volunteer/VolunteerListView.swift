@@ -13,40 +13,48 @@ struct VolunteerListView: View {
     @Environment(\.editMode) var editMode
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(volunteerListVM.volunteers) { volunteer in
-                    NavigationLink(destination: VolunteerView(volunteer: volunteer)) {
-                        Text("\(volunteer.prenom) \(volunteer.nom)")
+        VStack {
+            NavigationView {
+                List {
+                    ForEach(volunteerListVM.volunteers) { volunteer in
+                        NavigationLink(destination: VolunteerView(volunteer: volunteer)) {
+                            Text("\(volunteer.prenom) \(volunteer.nom)")
+                        }
+                    }
+                    .onDelete { indexSet in
+                        //TODO: attention ça supprime directement sans confirmation !!!
+                        for index in indexSet {
+                            let id = volunteerListVM.volunteers[index].id
+                            VolunteerIntent.delete(id, volunteerListVM).process()
+                        }
                     }
                 }
-                .onDelete { indexSet in
-                    //TODO: attention ça supprime directement sans confirmation !!!
-                    for index in indexSet {
-                        let id = volunteerListVM.volunteers[index].id
-                        VolunteerIntent.delete(id, volunteerListVM).process()
-                    }
+                .navigationTitle("Bénévoles")
+                .navigationBarItems(leading: EditButton(),
+                                                trailing: Button(action: {
+                                                    showCreateVolunteer.toggle()
+                                                }) {
+                                                    Image(systemName: "plus")
+                                                })
+                /*.navigationBarItems(
+                                leading: Button(action: {
+                                    editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
+                                }) {
+                                    Text(editMode?.wrappedValue == .active ? "OK" : "Modifier")
+                                },
+                                trailing: Button(action: {
+                                    showCreateVolunteer.toggle()
+                                }) {
+                                    Image(systemName: "plus")
+                                })*/
+                .sheet(isPresented: $showCreateVolunteer) {
+                    CreateVolunteerView(volunteerListVM: volunteerListVM)
                 }
             }
-            .navigationTitle("Bénévoles")
-            .navigationBarItems(
-                            leading: Button(action: {
-                                editMode?.wrappedValue = editMode?.wrappedValue == .active ? .inactive : .active
-                            }) {
-                                Text(editMode?.wrappedValue == .active ? "Done" : "Edit")
-                            },
-                            trailing: Button(action: {
-                                showCreateVolunteer.toggle()
-                            }) {
-                                Image(systemName: "plus")
-                            }
-                        )
-            .sheet(isPresented: $showCreateVolunteer) {
-                CreateVolunteerView(volunteerListVM: volunteerListVM)
+            .onAppear {
+                volunteerListVM.fetchVolunteers()
             }
-        }
-        .onAppear {
-            volunteerListVM.fetchVolunteers()
+            Footer()
         }
     }
 }

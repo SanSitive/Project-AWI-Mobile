@@ -9,7 +9,7 @@ import Foundation
 
 struct CreneauDTO : Codable{
     var id : Int
-    var id_jour : Int
+    var id_jour : Int
     var heureDebut : Int
     var heureFin : Int
     var minuteDebut : Int
