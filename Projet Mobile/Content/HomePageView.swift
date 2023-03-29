@@ -30,9 +30,6 @@ struct HomePageView: View {
                                     .background(Color.green)
                                     .cornerRadius(10)
                             }
-                            Spacer()
-                            Footer()
-                            
                         }
                     }
         

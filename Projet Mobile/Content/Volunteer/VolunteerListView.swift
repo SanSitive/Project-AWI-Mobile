@@ -37,12 +37,12 @@ struct VolunteerListView: View {
                                     })
                 .sheet(isPresented: $showCreateVolunteer) {
                     CreateVolunteerView()
+                        .environmentObject(volunteerEnvironment)
                 }
             }
             .onAppear {
                 volunteerEnvironment.process(intent: .fetch)
             }
-            Footer()
         }
     }
 }

@@ -2,64 +2,61 @@
 //  Footer.swift
 //  Projet Mobile
 //
-//  Created by etud on 16/03/2023.
+//  Created by Lexay on 16/03/2023.
 //
 
 import SwiftUI
 
 struct Footer: View {
     var body: some View {
-        VStack {
-            Divider()
-            HStack {
-                NavigationLink(destination: HomeView()) {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("Accueil")
-                    }
+        TabView {
+            HomePageView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Accueil")
                 }
-                Spacer()
-                NavigationLink(destination: ExploreView()) {
-                    VStack {
-                        Image(systemName: "magnifyingglass")
-                        Text("Explorer")
-                    }
+            
+            FestivalListViewFalse()
+                .tabItem {
+                    Image(systemName: "star")
+                    Text("Festivals")
                 }
-                Spacer()
-                NavigationLink(destination: ProfileView()) {
-                    VStack {
-                        Image(systemName: "person.crop.circle")
-                        Text("Profil")
-                    }
+            
+            VolunteerListView()
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Bénévoles")
                 }
-            }
-            .font(.headline)
-            .padding(.horizontal, 40)
-            .padding(.vertical, 10)
+
+            ScheduleView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("Créneaux")
+                }
+                
+            ZonesView()
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("Zones")
+                }
         }
-        .background(Color.white)
     }
 }
 
-struct HomeView: View {
+struct ScheduleView: View {
     var body: some View {
-        Text("Contenu de l'accueil")
+        Text("Contenu de la page à faire")
     }
 }
 
-struct ExploreView: View {
+struct ZonesView: View {
     var body: some View {
-        Text("Contenu de l'exploration")
+        Text("Contenu de la page à faire")
     }
 }
 
-struct ProfileView: View {
+struct FestivalListViewFalse: View {
     var body: some View {
-        Text("Contenu du profil")
-    }
-}
-struct Footer_Previews: PreviewProvider {
-    static var previews: some View {
-        Footer()
+        Text("Contenu de la page à faire")
     }
 }
