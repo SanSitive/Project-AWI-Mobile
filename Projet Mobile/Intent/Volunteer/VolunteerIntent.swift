@@ -11,7 +11,7 @@ struct VolunteerIntent {
     let viewModel: VolunteerListVM
 
     enum Action {
-        case create(VolunteerVM)
+        case create(VolunteerVM, password: String)
         case read
         case update(VolunteerVM)
         case delete(Int)
@@ -19,8 +19,8 @@ struct VolunteerIntent {
 
     func perform(action: Action) {
         switch action {
-        case .create(let volunteer):
-            createVolunteer(volunteer)
+        case .create(let volunteer, let password):
+            createVolunteer(volunteer, password: password)
         case .read:
             fetchVolunteers()
         case .update(let volunteer):
@@ -43,8 +43,8 @@ struct VolunteerIntent {
         }
     }
 
-    private func createVolunteer(_ volunteer: VolunteerVM) {
-        dao.createVolunteer(volunteer: volunteer) { result in
+    private func createVolunteer(_ volunteer: VolunteerVM, password: String) {
+        dao.createVolunteer(volunteer: volunteer, password: password) { result in
             switch result {
             case .success(let id):
                 DispatchQueue.main.async {

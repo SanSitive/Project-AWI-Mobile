@@ -9,6 +9,7 @@ import Foundation
 
 class VolunteerDAO {
     private let baseURL = MyEnvVariables().API_URL + "benevoles"
+    private let baseURLCreate = MyEnvVariables().API_URL + "authMobile"
 
     func fetchVolunteers(completion: @escaping (Result<[VolunteerVM], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
@@ -27,13 +28,13 @@ class VolunteerDAO {
         }
     }
 
-    func createVolunteer(volunteer: VolunteerVM, completion: @escaping (Result<Int, Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
+    func createVolunteer(volunteer: VolunteerVM, password: String, completion: @escaping (Result<Int, Error>) -> Void) {
+        guard let url = URL(string: baseURLCreate) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
         }
         
-        let volunteerDTO = VolunteerDTO.fromModel(volunteer)
+        let volunteerDTO = VolunteerDTO.fromModel(volunteer, password: password)
 
         Task {
             switch await URLSession.shared.create(from: url, element: volunteerDTO) as Result<Int, APIError> {

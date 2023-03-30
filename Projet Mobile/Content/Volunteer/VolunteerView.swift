@@ -11,12 +11,13 @@ struct VolunteerView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var volunteer: VolunteerVM
     @State private var isEditMode: Bool = false
+    @State private var password: String = ""
     var onSave: (VolunteerVM) -> Void
 
     var body: some View {
         VStack {
             if isEditMode {
-                VolunteerFormView(volunteer: volunteer, isEditMode: $isEditMode)
+                VolunteerFormView(volunteer: volunteer, isEditMode: $isEditMode, password: $password)
             } else {
                 VStack {
                     Spacer()
@@ -63,3 +64,4 @@ struct VolunteerView: View {
         }
     }
 }
+
