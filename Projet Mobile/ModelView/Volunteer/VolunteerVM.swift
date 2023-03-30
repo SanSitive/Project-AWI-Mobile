@@ -8,6 +8,46 @@
 import Foundation
 import SwiftUI
 
+
+class VolunteerVM: ObservableObject, Identifiable {
+    @Published var id: Int
+    @Published var email: String
+    @Published var nom: String
+    @Published var prenom: String
+    @Published var isAdmin: Bool
+
+    init(email: String, nom: String, prenom: String, id: Int, isAdmin: Bool) {
+        self.email = email
+        self.nom = nom
+        self.prenom = prenom
+        self.id = id
+        self.isAdmin = isAdmin
+    }
+
+    init(volunteerDTO: VolunteerDTO) {
+        self.email = volunteerDTO.email
+        self.nom = volunteerDTO.nom
+        self.prenom = volunteerDTO.prenom
+        self.id = volunteerDTO.id
+        self.isAdmin = volunteerDTO.isAdmin
+    }
+
+    func isEmailValid() -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: self.email)
+    }
+
+    func isAdminUser() -> Bool {
+        return self.isAdmin == true
+    }
+
+    func copy() -> VolunteerVM {
+        return VolunteerVM(email: self.email, nom: self.nom, prenom: self.prenom, id: self.id, isAdmin: self.isAdmin)
+    }
+}
+
+/*
 protocol VolunteerObserver {
     func change(nom: String)
     func change(prenom: String)
@@ -107,7 +147,7 @@ class VolunteerVM : ObservableObject, Identifiable {
 //            prenom = oldValue
         }
     }
-}
+}*/
 
 
 /*

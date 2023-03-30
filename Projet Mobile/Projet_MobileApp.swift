@@ -12,7 +12,7 @@ struct Projet_MobileApp: App {
     var body: some Scene {
         WindowGroup{
 //            LoginPageView()
-            Footer().environmentObject(VolunteerEnvironment())
+            Footer()
         }
     }
 }

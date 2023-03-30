@@ -23,9 +23,3 @@ struct VolunteerFormView: View {
         .navigationBarTitle(isEditMode ? "Modifier le bénévole" : "Créer un bénévole", displayMode: .inline)
     }
 }
-
-//struct VolunteerFormView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        VolunteerFormView()
-//    }
-//}

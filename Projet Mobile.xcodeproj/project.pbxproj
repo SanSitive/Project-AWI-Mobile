@@ -64,7 +64,6 @@
 		B7E914F929D1B87D0084B614 /* ZoneVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914F829D1B87D0084B614 /* ZoneVM.swift */; };
 		B7E914FB29D1B91C0084B614 /* ZoneListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914FA29D1B91C0084B614 /* ZoneListVM.swift */; };
 		B7E914FD29D1B9AE0084B614 /* ZoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E914FC29D1B9AE0084B614 /* ZoneDTO.swift */; };
-		B7E9150129D2BCFF0084B614 /* VolunteerEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9150029D2BCFF0084B614 /* VolunteerEnvironment.swift */; };
 		B7E9150429D2C5FF0084B614 /* FestivalZoneDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9150329D2C5FF0084B614 /* FestivalZoneDTO.swift */; };
 		B7E9150829D2C62B0084B614 /* BenevoleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9150729D2C62B0084B614 /* BenevoleDTO.swift */; };
 		B7E9150A29D2C6560084B614 /* FestivalZoneDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9150929D2C6560084B614 /* FestivalZoneDAO.swift */; };
@@ -160,7 +159,6 @@
 		B7E914F829D1B87D0084B614 /* ZoneVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneVM.swift; sourceTree = "<group>"; };
 		B7E914FA29D1B91C0084B614 /* ZoneListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListVM.swift; sourceTree = "<group>"; };
 		B7E914FC29D1B9AE0084B614 /* ZoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDTO.swift; sourceTree = "<group>"; };
-		B7E9150029D2BCFF0084B614 /* VolunteerEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerEnvironment.swift; sourceTree = "<group>"; };
 		B7E9150329D2C5FF0084B614 /* FestivalZoneDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalZoneDTO.swift; sourceTree = "<group>"; };
 		B7E9150729D2C62B0084B614 /* BenevoleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDTO.swift; sourceTree = "<group>"; };
 		B7E9150929D2C6560084B614 /* FestivalZoneDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalZoneDAO.swift; sourceTree = "<group>"; };
@@ -407,7 +405,6 @@
 		B7CF777329C076B20044CEDB /* Projet Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				B7E914FF29D2BCC90084B614 /* EnvironmentObject */,
 				B721806D29CC70A1003EFB19 /* ModelObservers */,
 				B721806029CC66A1003EFB19 /* State */,
 				B7FB26FB29CB08AC0081C181 /* Service */,
@@ -568,14 +565,6 @@
 				B7E914FA29D1B91C0084B614 /* ZoneListVM.swift */,
 			);
 			path = Zone;
-			sourceTree = "<group>";
-		};
-		B7E914FF29D2BCC90084B614 /* EnvironmentObject */ = {
-			isa = PBXGroup;
-			children = (
-				B7E9150029D2BCFF0084B614 /* VolunteerEnvironment.swift */,
-			);
-			path = EnvironmentObject;
 			sourceTree = "<group>";
 		};
 		B7E9150229D2C5D80084B614 /* FestivalZone */ = {
@@ -828,7 +817,6 @@
 				B7E914DB29D179630084B614 /* CreneauIntent.swift in Sources */,
 				B7E914CA29D173480084B614 /* JourDTO.swift in Sources */,
 				B721807029CC70D2003EFB19 /* FestivalModelObserver.swift in Sources */,
-				B7E9150129D2BCFF0084B614 /* VolunteerEnvironment.swift in Sources */,
 				B7941F3429C9D44100FD67C1 /* AuthVM.swift in Sources */,
 				B721807229CC7C5A003EFB19 /* FestivalIntent.swift in Sources */,
 				B7941F1929C322FA00FD67C1 /* ManageFestivalView.swift in Sources */,

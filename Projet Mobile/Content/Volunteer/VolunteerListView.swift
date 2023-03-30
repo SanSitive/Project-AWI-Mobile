@@ -8,23 +8,33 @@
 import SwiftUI
 
 struct VolunteerListView: View {
-    @EnvironmentObject var volunteerEnvironment: VolunteerEnvironment
     @State private var showCreateVolunteer = false
     @Environment(\.editMode) var editMode
+    @ObservedObject var volunteerListVM: VolunteerListVM
+    let volunteerIntent: VolunteerIntent
+    
+    init() {
+        let vm = VolunteerListVM()
+        let intent = VolunteerIntent(viewModel: vm)
+        self.volunteerListVM = vm
+        self.volunteerIntent = intent
+    }
 
     var body: some View {
         VStack {
             NavigationView {
                 List {
-                    ForEach(volunteerEnvironment.volunteers) { volunteer in
-                        NavigationLink(destination: VolunteerView(volunteer: volunteer)) {
+                    ForEach(volunteerListVM.volunteers) { volunteer in
+                        NavigationLink(destination: VolunteerView(volunteer: volunteer, onSave: { updatedVolunteer in
+                            volunteerIntent.perform(action: .update(updatedVolunteer))
+                        })) {
                             Text("\(volunteer.prenom) \(volunteer.nom)")
                         }
                     }
                     .onDelete { indexSet in
                         for index in indexSet {
-                            let id = volunteerEnvironment.volunteers[index].id
-                            volunteerEnvironment.process(intent: .delete(id))
+                            let id = volunteerListVM.volunteers[index].id
+                            volunteerIntent.perform(action: .delete(id))
                         }
                     }
                 }
@@ -36,62 +46,12 @@ struct VolunteerListView: View {
                                         Image(systemName: "plus")
                                     })
                 .sheet(isPresented: $showCreateVolunteer) {
-                    CreateVolunteerView()
-                        .environmentObject(volunteerEnvironment)
+                    CreateVolunteerView(volunteerIntent: volunteerIntent)
                 }
             }
             .onAppear {
-                volunteerEnvironment.process(intent: .fetch)
+                volunteerIntent.perform(action: .read)
             }
-        }
-    }
-}
-
-struct VolunteerListView_Previews: PreviewProvider {
-    static var previews: some View {
-        VolunteerListView().environmentObject(VolunteerEnvironment())
-    }
-}
-/*
-import SwiftUI
-
-struct VolunteerListView: View {
-    @StateObject var volunteerListVM = VolunteerListVM()
-    @State private var showCreateVolunteer = false
-    @Environment(\.editMode) var editMode
-
-    var body: some View {
-        VStack {
-            NavigationView {
-                List {
-                    ForEach(volunteerListVM.volunteers) { volunteer in
-                        NavigationLink(destination: VolunteerView(volunteer: volunteer)) {
-                            Text("\(volunteer.prenom) \(volunteer.nom)")
-                        }
-                    }
-                    .onDelete { indexSet in
-                        //TODO: attention ça supprime directement sans confirmation !!!
-                        for index in indexSet {
-                            let id = volunteerListVM.volunteers[index].id
-                            VolunteerIntent.delete(id, volunteerListVM).process()
-                        }
-                    }
-                }
-                .navigationTitle("Bénévoles")
-                .navigationBarItems(leading: EditButton(),
-                                                trailing: Button(action: {
-                                                    showCreateVolunteer.toggle()
-                                                }) {
-                                                    Image(systemName: "plus")
-                                                })
-                .sheet(isPresented: $showCreateVolunteer) {
-                    CreateVolunteerView(volunteerListVM: volunteerListVM)
-                }
-            }
-            .onAppear {
-                volunteerListVM.fetchVolunteers()
-            }
-            Footer()
         }
     }
 }
@@ -101,4 +61,3 @@ struct VolunteerListView_Previews: PreviewProvider {
         VolunteerListView()
     }
 }
-*/

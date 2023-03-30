@@ -9,16 +9,16 @@ import SwiftUI
 
 struct CreateVolunteerView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var volunteerEnvironment: VolunteerEnvironment
     @StateObject private var volunteer = VolunteerVM(email: "", nom: "", prenom: "", id: -1, isAdmin: false)
-    
+    var volunteerIntent: VolunteerIntent
+
     var body: some View {
         NavigationView {
             VStack {
                 VolunteerFormView(volunteer: volunteer, isEditMode: .constant(false))
                 
                 Button(action: {
-                    volunteerEnvironment.process(intent: .create(volunteer))
+                    volunteerIntent.perform(action: .create(volunteer))
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Create Volunteer")
@@ -40,6 +40,8 @@ struct CreateVolunteerView: View {
 
 struct CreateVolunteerView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateVolunteerView().environmentObject(VolunteerEnvironment())
+        let viewModel = VolunteerListVM()
+        let intent = VolunteerIntent(viewModel: viewModel)
+        return CreateVolunteerView(volunteerIntent: intent)
     }
 }
