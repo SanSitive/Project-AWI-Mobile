@@ -30,6 +30,7 @@ extension URLSession {
     }
     
     func create<T:Codable>(from url:URL,element:T)async -> Result<T, APIError>{
+        debugPrint("element= ", element)
         guard let encoded :Data = try? JSONEncoder().encode(element)else {
             return .failure(.JsonEncodingFailed)
         }
