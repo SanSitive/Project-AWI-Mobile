@@ -27,7 +27,7 @@ class JourDAO {
         }
     }
 
-    func createJour(jour: JourVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createJour(jour: JourVM, completion: @escaping (Result<JourVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -36,9 +36,10 @@ class JourDAO {
         let jourDTO = JourDTO.fromModel(jour)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: jourDTO) as Result<Int, APIError> {
-            case .success(let id):
-                completion(.success(id))
+            switch await URLSession.shared.create(from: url, element: jourDTO) as Result<JourDTO, APIError> {
+            case .success(let jourDTO):
+                let jour = jourDTO.toModel()
+                completion(.success(jour))
             case .failure(let error):
                 completion(.failure(error))
             }

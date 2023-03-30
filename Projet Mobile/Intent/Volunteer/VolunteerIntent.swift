@@ -46,10 +46,9 @@ struct VolunteerIntent {
     private func createVolunteer(_ volunteer: VolunteerVM, password: String) {
         dao.createVolunteer(volunteer: volunteer, password: password) { result in
             switch result {
-            case .success(let id):
+            case .success(let volunteerVM):
                 DispatchQueue.main.async {
-                    volunteer.id = id
-                    viewModel.appendVolunteer(volunteer)
+                    viewModel.appendVolunteer(volunteerVM)
                 }
             case .failure(let error):
                 print("Error creating volunteer: \(error)")

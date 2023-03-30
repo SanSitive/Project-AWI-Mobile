@@ -35,7 +35,7 @@ class ZoneDAO {
         }
     }
 
-    func createZone(zone: ZoneVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createZone(zone: ZoneVM, completion: @escaping (Result<ZoneVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -44,9 +44,10 @@ class ZoneDAO {
         let zoneDTO = ZoneDTO.fromModel(zone)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: zoneDTO) as Result<Int, APIError> {
-            case .success(let id):
-                completion(.success(id))
+            switch await URLSession.shared.create(from: url, element: zoneDTO) as Result<ZoneDTO, APIError> {
+            case .success(let zoneDTO):
+                let zone = zoneDTO.toModel()
+                completion(.success(zone))
             case .failure(let error):
                 completion(.failure(error))
             }

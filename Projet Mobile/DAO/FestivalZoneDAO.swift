@@ -25,7 +25,7 @@ class FestivalZoneDAO {
         }
     }
 
-    func createFestivalZone(festival_zone: FestivalZoneVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createFestivalZone(festival_zone: FestivalZoneVM, completion: @escaping (Result<FestivalZoneVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -34,9 +34,10 @@ class FestivalZoneDAO {
         let festival_zoneDTO = FestivalZoneDTO.fromModel(festival_zone)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: festival_zoneDTO) as Result<Int, APIError> {
-            case .success(let id):
-                completion(.success(id))
+            switch await URLSession.shared.create(from: url, element: festival_zoneDTO) as Result<FestivalZoneDTO, APIError> {
+            case .success(let festivalZoneDTO):
+                let festivalZone = festivalZoneDTO.toModel()
+                completion(.success(festivalZone))
             case .failure(let error):
                 completion(.failure(error))
             }

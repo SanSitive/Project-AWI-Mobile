@@ -29,22 +29,23 @@ extension URLSession {
         return .success(decoded)
     }
     
-    func create<T:Encodable>(from url:URL,element:T)async -> Result<Int, APIError>{
+    func create<T:Codable>(from url:URL,element:T)async -> Result<T, APIError>{
         guard let encoded :Data = try? JSONEncoder().encode(element)else {
             return .failure(.JsonEncodingFailed)
         }
         var request :URLRequest = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        debugPrint("request: ", request)
+        debugPrint("requests: ", request)
         do {
             let (data,response) = try await upload(for: request, from: encoded, delegate: nil)
             let httpResponse = response as! HTTPURLResponse
             if httpResponse.statusCode == 201 || httpResponse.statusCode == 200 {
-                guard let id  = try? JSONDecoder().decode(IdDTO.self, from: data) else{
+                guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                    print(String(decoding: data,as: UTF8.self))
                     return .failure(.JsonDecodingFailed)
                 }
-                return .success(id.ID)
+                return .success(decoded)
             }
             else {
                 return .failure(.httpResponseError(httpResponse.statusCode))
@@ -55,6 +56,7 @@ extension URLSession {
         }
     }
 
+    /*
     func createSave<T:Encodable>(from url:URL,element:T)async -> Result<Int, APIError>{
         guard let encoded :Data = try? JSONEncoder().encode(element)else {
             return .failure(.JsonEncodingFailed)
@@ -81,6 +83,7 @@ extension URLSession {
             return .failure(.urlNotFound(url.absoluteString))
         }
     }
+     */
 
     func update<T:Encodable>(from url:URL,element:T)async -> Result<Bool, APIError>{
         guard let encoded :Data = try? JSONEncoder().encode(element)else {

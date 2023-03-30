@@ -27,7 +27,7 @@ class CreneauDAO {
         }
     }
 
-    func createCreneau(creneau: CreneauVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createCreneau(creneau: CreneauVM, completion: @escaping (Result<CreneauVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -36,9 +36,10 @@ class CreneauDAO {
         let creneauDTO = CreneauDTO.fromModel(creneau)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: creneauDTO) as Result<Int, APIError> {
-            case .success(let id):
-                completion(.success(id))
+            switch await URLSession.shared.create(from: url, element: creneauDTO) as Result<CreneauDTO, APIError> {
+            case .success(let creneauDTO):
+                let creneau = creneauDTO.toModel()
+                completion(.success(creneau))
             case .failure(let error):
                 completion(.failure(error))
             }
