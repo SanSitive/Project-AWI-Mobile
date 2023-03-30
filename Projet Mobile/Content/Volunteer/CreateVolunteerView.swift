@@ -29,7 +29,6 @@ struct CreateVolunteerView: View {
                 VolunteerFormView(volunteer: volunteer, isEditMode: .constant(false), password: $password)
                 
                 Button(action: {
-                    password = generatePassword()
                     volunteerIntent.perform(action: .create(volunteer, password: password))
                     presentationMode.wrappedValue.dismiss()
                 }) {
