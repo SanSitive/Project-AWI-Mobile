@@ -13,7 +13,6 @@
 		B721807229CC7C5A003EFB19 /* FestivalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721807129CC7C5A003EFB19 /* FestivalIntent.swift */; };
 		B721807429CC7D32003EFB19 /* FestivalListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721807329CC7D32003EFB19 /* FestivalListState.swift */; };
 		B721807729CC84F9003EFB19 /* FestivalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721807629CC84F9003EFB19 /* FestivalListView.swift */; };
-		B721807929CC890A003EFB19 /* FestivalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721807829CC890A003EFB19 /* FestivalItemView.swift */; };
 		B721808429CC9E2B003EFB19 /* ZoneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721808329CC9E2B003EFB19 /* ZoneState.swift */; };
 		B721808629CC9E69003EFB19 /* ZoneIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721808529CC9E69003EFB19 /* ZoneIntent.swift */; };
 		B7941F1529C319EE00FD67C1 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7941F1429C319EE00FD67C1 /* HomePageView.swift */; };
@@ -105,7 +104,6 @@
 		B721807129CC7C5A003EFB19 /* FestivalIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalIntent.swift; sourceTree = "<group>"; };
 		B721807329CC7D32003EFB19 /* FestivalListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListState.swift; sourceTree = "<group>"; };
 		B721807629CC84F9003EFB19 /* FestivalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalListView.swift; sourceTree = "<group>"; };
-		B721807829CC890A003EFB19 /* FestivalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalItemView.swift; sourceTree = "<group>"; };
 		B721808329CC9E2B003EFB19 /* ZoneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneState.swift; sourceTree = "<group>"; };
 		B721808529CC9E69003EFB19 /* ZoneIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneIntent.swift; sourceTree = "<group>"; };
 		B7941F1429C319EE00FD67C1 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				B721807629CC84F9003EFB19 /* FestivalListView.swift */,
-				B721807829CC890A003EFB19 /* FestivalItemView.swift */,
 			);
 			path = Festival;
 			sourceTree = "<group>";
@@ -779,7 +776,6 @@
 				B7E914EA29D191030084B614 /* CreateVolunteerView.swift in Sources */,
 				B721808429CC9E2B003EFB19 /* ZoneState.swift in Sources */,
 				B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */,
-				B721807929CC890A003EFB19 /* FestivalItemView.swift in Sources */,
 				B7E914FD29D1B9AE0084B614 /* ZoneDTO.swift in Sources */,
 				B7941F2829C99AA200FD67C1 /* FestivalDAO.swift in Sources */,
 				B721806629CC689A003EFB19 /* FestivalState.swift in Sources */,
