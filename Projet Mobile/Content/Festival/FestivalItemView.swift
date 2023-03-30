@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FestivalItemView: View {
     @ObservedObject var festival: FestivalVM
+    @State var isActiveZone : Bool = true
     
     init(festival: FestivalVM) {
         self.festival = festival
@@ -16,15 +17,55 @@ struct FestivalItemView: View {
     
     var body: some View {
         VStack{
-            Text("\(festival.nom)")
-            Text("\(festival.annee)")
-            Text("\(String(festival.isActive))")
-        }
-    }
-}
+            Spacer()
+            VStack{
+                Text("\(festival.nom)")
+                Text("\(festival.annee)")
+                Text("\(String(festival.isActive))")
+            }
+            HStack{
+                Spacer()
+                Button(action: {
+                                self.isActiveZone = true
+                            }) {
+                                Text("Zone")
+                                    .frame(width: 150, height: 50)
+                                    .background(isActiveZone ? Color.purple : Color.white)
+                                    .foregroundColor(isActiveZone ? Color.white : Color.black)
+                                    .cornerRadius(25)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .stroke(isActiveZone ? Color.purple : Color.black, lineWidth: 2)
+                                    )
+                            }
+                Button(action: {
+                                                self.isActiveZone = false
+                                            }) {
+                                                Text("Jours")
+                                                    .frame(width: 150, height: 50)
+                                                    .background(!isActiveZone ? Color.purple : Color.white)
+                                                    .foregroundColor(!isActiveZone ? Color.white : Color.black)
+                                                    .cornerRadius(25)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 25)
+                                                            .stroke(!isActiveZone ? Color.purple : Color.black, lineWidth: 2)
+                                                    )
+                                            }
+                                Spacer()
+                            }
+                            if(isActiveZone){
+                                FestivalZoneListView()
+                            }else{
+                                JourListView()
+                            }
+                            Spacer()
+                        }
+                        
+                    }
+                }
 
-//struct FestivalItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FestivalItemView()
-//    }
-//}
+                struct FestivalItemView_Previews: PreviewProvider {
+                    static var previews: some View {
+                        FestivalItemView(festival: FestivalVM(festival: FestivalDTO(id: 0, nom: "test", annee: 2023, isActive: true)))
+                    }
+                }
