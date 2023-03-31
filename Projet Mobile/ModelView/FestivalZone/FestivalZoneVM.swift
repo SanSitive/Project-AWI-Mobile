@@ -8,7 +8,7 @@
 import Foundation
 
 
-class FestivalZoneVM : ObservableObject, Hashable, Equatable{
+class FestivalZoneVM : ObservableObject, Hashable, Equatable, Identifiable{
     
     @Published var id_festivalZone : Int
     @Published var id_festival : Int

@@ -16,7 +16,7 @@ struct Footer: View {
                     Text("Accueil")
                 }
             
-            FestivalListViewFalse()
+            FestivalListView(viewModel: FestivalListVM(festivals: [] ))
                 .tabItem {
                     Image(systemName: "star")
                     Text("Festivals")
