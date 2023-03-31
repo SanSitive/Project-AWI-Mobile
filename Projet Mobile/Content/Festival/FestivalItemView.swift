@@ -21,7 +21,6 @@ struct FestivalItemView: View {
             VStack{
                 Text("\(festival.nom)")
                 Text("\(festival.annee)")
-                Text("\(String(festival.isActive))")
             }
             HStack{
                 Spacer()
@@ -56,7 +55,7 @@ struct FestivalItemView: View {
                                             if(isActiveZone){
                                                 FestivalZoneListView(festivalZones: FestivalZoneListVM(festivalZones: []), zones: ZoneListVM(zones: []), festivalActifId: festival.id)
                                             }else{
-                                                JourListView()
+                                                JourListView(festivalActif: festival.id, jourList: JourListVM(jourList: []))
                                             }
                                             Spacer()
                                         }

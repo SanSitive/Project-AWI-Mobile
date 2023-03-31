@@ -12,7 +12,9 @@ struct FestivalZoneListView: View {
     @State var zone : String = "libre"
     @State var nbBenevolesNecessaires : Int = 1
     @State var inputZone : String = ""
+    
     @ObservedObject var zones : ZoneListVM
+    
     @State var errorCreate : String = ""
     @State var showAlert : Bool = false
     
