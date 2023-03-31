@@ -64,8 +64,8 @@ struct FestivalItemView: View {
                                     }
                                 }
 
-                                struct FestivalItemView_Previews: PreviewProvider {
-                                    static var previews: some View {
-                                        FestivalItemView(festival: FestivalVM(festival: FestivalDTO(id: 0, nom: "test", annee: 2023, isActive: true)))
-                                    }
-                                }
+struct FestivalItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        FestivalItemView(festival: FestivalVM(festival: FestivalDTO(id: 0, nom: "test", annee: 2023, isActive: true)))
+    }
+}

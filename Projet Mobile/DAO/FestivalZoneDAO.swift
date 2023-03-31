@@ -24,6 +24,23 @@ class FestivalZoneDAO {
             }
         }
     }
+    
+    func fetchFestivalZonesOfAFestival(id: Int, completion: @escaping (Result<[FestivalZoneVM], Error>) -> Void) {
+        let urlToUse = baseURL + "/festival/\(id)"
+        guard let url = URL(string: urlToUse) else {
+            completion(.failure(APIError.urlNotFound(baseURL)))
+            return
+        }
+        
+        Task {
+            switch await URLSession.shared.getJSON(from: url) as Result<[FestivalZoneDTO], APIError> {
+            case .success(let festival_zoneDTOs):
+                let festival_zones = festival_zoneDTOs.map { $0.toModel() }
+                completion(.success(festival_zones))
+            case .failure(let error):                completion(.failure(error))
+            }
+        }
+    }
 
     func createFestivalZone(festival_zone: FestivalZoneVM, completion: @escaping (Result<FestivalZoneVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
