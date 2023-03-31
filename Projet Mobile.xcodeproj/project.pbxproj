@@ -76,6 +76,7 @@
 		B7E9151F29D6D57B0084B614 /* ConnectedVolunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9151E29D6D57B0084B614 /* ConnectedVolunteer.swift */; };
 		B7E9152229D6E2C80084B614 /* AuthIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152129D6E2C80084B614 /* AuthIntent.swift */; };
 		B7E9152429D7088B0084B614 /* TestAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152329D7088B0084B614 /* TestAuthView.swift */; };
+		B7E9152629D716450084B614 /* CreneauListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152529D716450084B614 /* CreneauListVM.swift */; };
 		B7FB26FA29CB07990081C181 /* SignInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26F929CB07990081C181 /* SignInPageView.swift */; };
 		B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FC29CB08C10081C181 /* alert.service.swift */; };
 		B7FB26FF29CB0D6E0081C181 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */; };
@@ -175,6 +176,7 @@
 		B7E9151E29D6D57B0084B614 /* ConnectedVolunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedVolunteer.swift; sourceTree = "<group>"; };
 		B7E9152129D6E2C80084B614 /* AuthIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthIntent.swift; sourceTree = "<group>"; };
 		B7E9152329D7088B0084B614 /* TestAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthView.swift; sourceTree = "<group>"; };
+		B7E9152529D716450084B614 /* CreneauListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauListVM.swift; sourceTree = "<group>"; };
 		B7FB26F929CB07990081C181 /* SignInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageView.swift; sourceTree = "<group>"; };
 		B7FB26FC29CB08C10081C181 /* alert.service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.service.swift; sourceTree = "<group>"; };
 		B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		B7941F1329C3192B00FD67C1 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				B7E9152729D716EC0084B614 /* Creneau */,
 				B7E9151729D428840084B614 /* Jour */,
 				B7E9151429D427940084B614 /* FestivalZone */,
 				B7E914BF29CDEA960084B614 /* Volunteer */,
@@ -514,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				B7E914D229D178B20084B614 /* CreneauVM.swift */,
+				B7E9152529D716450084B614 /* CreneauListVM.swift */,
 			);
 			path = Creaneau;
 			sourceTree = "<group>";
@@ -633,6 +637,13 @@
 				B7E9152129D6E2C80084B614 /* AuthIntent.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		B7E9152729D716EC0084B614 /* Creneau */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Creneau;
 			sourceTree = "<group>";
 		};
 		B7FB26FB29CB08AC0081C181 /* Service */ = {
@@ -846,6 +857,7 @@
 				B749B1A529D6D3240061DD72 /* FestivalZoneListVM.swift in Sources */,
 				B721808629CC9E69003EFB19 /* ZoneIntent.swift in Sources */,
 				B7E9151029D2C6A80084B614 /* FestivalZoneIntent.swift in Sources */,
+				B7E9152629D716450084B614 /* CreneauListVM.swift in Sources */,
 				B7E9152229D6E2C80084B614 /* AuthIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

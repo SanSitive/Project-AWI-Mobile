@@ -34,7 +34,7 @@ struct CreneauDTO : Codable{
     }
 
     func toModel() -> CreneauVM {
-        return CreneauVM(creneau: self)
+        return CreneauVM(creneauDTO: self)
     }
 
     static func fromModel(_ model: CreneauVM) -> CreneauDTO {
