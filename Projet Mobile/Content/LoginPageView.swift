@@ -28,7 +28,6 @@ struct LoginPageView: View {
     //                
                     Button("Se connecter"){
                         debugPrint("test")
-                        
                     }
                         .frame(maxWidth: .infinity)
                         .padding()

@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct Projet_MobileApp: App {
+    @StateObject var connectedVolunteer = ConnectedVolunteer()
+    
     var body: some Scene {
         WindowGroup{
-//            LoginPageView()
-            Footer()
+            ContentView()
+                .environmentObject(connectedVolunteer)
         }
     }
 }
