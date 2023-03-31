@@ -72,6 +72,7 @@
 		B7E9151629D427B10084B614 /* FestivalZoneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9151529D427B10084B614 /* FestivalZoneListView.swift */; };
 		B7E9151929D428980084B614 /* JourListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9151829D428980084B614 /* JourListView.swift */; };
 		B7E9151D29D5BE690084B614 /* FestivalItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9151C29D5BE690084B614 /* FestivalItemView.swift */; };
+		B7E9151F29D6D57B0084B614 /* ConnectedVolunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9151E29D6D57B0084B614 /* ConnectedVolunteer.swift */; };
 		B7FB26FA29CB07990081C181 /* SignInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26F929CB07990081C181 /* SignInPageView.swift */; };
 		B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FC29CB08C10081C181 /* alert.service.swift */; };
 		B7FB26FF29CB0D6E0081C181 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */; };
@@ -167,6 +168,7 @@
 		B7E9151529D427B10084B614 /* FestivalZoneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalZoneListView.swift; sourceTree = "<group>"; };
 		B7E9151829D428980084B614 /* JourListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourListView.swift; sourceTree = "<group>"; };
 		B7E9151C29D5BE690084B614 /* FestivalItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalItemView.swift; sourceTree = "<group>"; };
+		B7E9151E29D6D57B0084B614 /* ConnectedVolunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedVolunteer.swift; sourceTree = "<group>"; };
 		B7FB26F929CB07990081C181 /* SignInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageView.swift; sourceTree = "<group>"; };
 		B7FB26FC29CB08C10081C181 /* alert.service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.service.swift; sourceTree = "<group>"; };
 		B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				B7E914C529D173070084B614 /* Jour */,
 				B7E914C029CDEAB40084B614 /* Volunteer */,
 				B7941F3329C9D44100FD67C1 /* AuthVM.swift */,
+				B7E9151E29D6D57B0084B614 /* ConnectedVolunteer.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				B7E9151329D2C6F40084B614 /* FestivalZoneState.swift in Sources */,
 				B7941F3029C9AC2B00FD67C1 /* JSONHelper.swift in Sources */,
 				B7E914EF29D1B57B0084B614 /* FestivalDTO.swift in Sources */,
+				B7E9151F29D6D57B0084B614 /* ConnectedVolunteer.swift in Sources */,
 				B7941F1529C319EE00FD67C1 /* HomePageView.swift in Sources */,
 				B7E914B529CD9F560084B614 /* RequestExtension.swift in Sources */,
 				B7E9150429D2C5FF0084B614 /* FestivalZoneDTO.swift in Sources */,
