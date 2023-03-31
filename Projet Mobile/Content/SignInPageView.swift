@@ -14,48 +14,50 @@ struct SignInPageView: View {
     @State private var password = ""
 
     var body: some View {
-        VStack {
-            TextField("First name", text: $firstName)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            TextField("Last name", text: $lastName)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            TextField("Email", text: $email)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-
-            SecureField("Password", text: $password)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            NavigationLink(destination: LoginPageView()) {
-                Text("S'inscrire")
-                    .frame(maxWidth: .infinity)
+        NavigationStack {
+            VStack {
+                TextField("First name", text: $firstName)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Last name", text: $lastName)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Email", text: $email)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+
+                SecureField("Password", text: $password)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                NavigationLink(destination: LoginPageView()) {
+                    Text("S'inscrire")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding()
+
+                Spacer()
+
+                HStack {
+                    Text("Déjà inscrit ?")
+                    NavigationLink(destination: LoginPageView()) {
+                        Text("Se connecter")
+                            .foregroundColor(.blue)
+                    }
+                }
+                .padding(.bottom)
             }
             .padding()
-
-            Spacer()
-
-            HStack {
-                Text("Déjà inscrit ?")
-                NavigationLink(destination: LoginPageView()) {
-                    Text("Se connecter")
-                        .foregroundColor(.blue)
-                }
-            }
-            .padding(.bottom)
+            .navigationTitle("S'inscrire")
         }
-        .padding()
-        .navigationTitle("S'inscrire")
     }
 }
 
