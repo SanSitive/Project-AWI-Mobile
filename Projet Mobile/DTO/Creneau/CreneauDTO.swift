@@ -40,10 +40,4 @@ struct CreneauDTO : Codable{
     static func fromModel(_ model: CreneauVM) -> CreneauDTO {
         return CreneauDTO(creneau: model)
     }
-    
-    
-}
-
-struct ResponseCreneau: Decodable{
-    var result : [CreneauDTO]
 }

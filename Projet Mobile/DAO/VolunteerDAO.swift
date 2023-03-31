@@ -9,7 +9,7 @@ import Foundation
 
 class VolunteerDAO {
     private let baseURL = MyEnvVariables().API_URL + "benevoles"
-    private let baseURLCreate = MyEnvVariables().API_URL + "authMobile"
+    private let baseURLCreate = MyEnvVariables().API_URL + "authMobile/signup"
 
     func fetchVolunteers(completion: @escaping (Result<[VolunteerVM], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
