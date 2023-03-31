@@ -59,4 +59,9 @@ class FestivalZoneListVM : ObservableObject {
         self.festivalZones.move(fromOffsets: indexSet, toOffset: index)
         self.objectWillChange.send()
     }
+    
+    func add(festivalZone: FestivalZoneVM){
+        self.festivalZones.append(festivalZone)
+        self.objectWillChange.send()
+    }
 }
