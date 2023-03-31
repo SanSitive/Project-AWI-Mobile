@@ -9,11 +9,10 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @StateObject var appSettings = MyEnvVariables()
-    @StateObject var connectedVolunteer = ConnectedVolunteer()
+    @EnvironmentObject var connectedVolunteer: ConnectedVolunteer
     
     var body: some View {
-        Footer().environmentObject(appSettings).environmentObject(connectedVolunteer)
+        Footer().environmentObject(connectedVolunteer)
     }
 }
 

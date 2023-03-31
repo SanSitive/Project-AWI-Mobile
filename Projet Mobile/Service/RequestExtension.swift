@@ -100,4 +100,28 @@ extension URLSession {
             return .failure(.urlNotFound(url.absoluteString))
         }
     }
+    
+    func postJSON<T: Codable, U: Codable>(from url: URL, element: U) async -> Result<T, APIError> {
+        guard let encoded: Data = try? JSONEncoder().encode(element) else {
+            return .failure(.JsonEncodingFailed)
+        }
+        var request: URLRequest = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        do {
+            let (data, response) = try await URLSession.shared.upload(for: request, from: encoded, delegate: nil)
+            let httpResponse = response as! HTTPURLResponse
+            if httpResponse.statusCode == 201 || httpResponse.statusCode == 200 {
+                guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                    print(String(decoding: data, as: UTF8.self))
+                    return .failure(.JsonDecodingFailed)
+                }
+                return .success(decoded)
+            } else {
+                return .failure(.httpResponseError(httpResponse.statusCode))
+            }
+        } catch {
+            return .failure(.urlNotFound(url.absoluteString))
+        }
+    }
 }
