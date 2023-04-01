@@ -13,6 +13,7 @@ struct FestivalZoneItemView: View {
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        //Je rajoute un commentaire pour tester si le push via PArsec marche
     }
 }
 
