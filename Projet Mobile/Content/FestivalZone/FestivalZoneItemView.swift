@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct FestivalZoneItemView: View {
+    @Environment(\.dismiss) var dismiss
     
     @ObservedObject var festivalZone : FestivalZoneVM
-    @State var inputNbBenevoles : Int
+    @State var inputNbBenevoles : Int = 0
     @State var showAlert : Bool = false
     
     var festivalZoneDAO = FestivalZoneDAO()
@@ -30,21 +31,42 @@ struct FestivalZoneItemView: View {
                 Stepper("\(inputNbBenevoles)", value: $inputNbBenevoles , in:1...10000)
                     .foregroundStyle(.secondary)
             }
-            Button("Modifier"){
-                showAlert = false
-                let festivalZoneToSend = FestivalZoneVM(id_festivalZone: festivalZone.id_festivalZone, id_festival: festivalZone.id_festival, label_zone: festivalZone.label_zone, nbBenevolesNecessaires: inputNbBenevoles)
-                festivalZoneDAO.updateFestivalZone(festival_zone: festivalZoneToSend ){result in
-                    switch(result){
-                        case .success(let succes):
-                            //ne fait rien
-                            debugPrint("TOut s'est bien passé")
-                        case .failure(let failure):
-                            showAlert = true
+            HStack{
+                Spacer()
+                Button("Modifier"){
+                    showAlert = false
+                    let festivalZoneToSend = FestivalZoneVM(id_festivalZone: festivalZone.id_festivalZone, id_festival: festivalZone.id_festival, label_zone: festivalZone.label_zone, nbBenevolesNecessaires: inputNbBenevoles)
+                    festivalZoneDAO.updateFestivalZone(festival_zone: festivalZoneToSend ){result in
+                        switch(result){
+                            case .success(let succes):
+                                festivalZone.nbBenevolesNecessaires = inputNbBenevoles
+                                debugPrint("TOut s'est bien passé")
+                            case .failure(let failure):
+                                showAlert = true
+                        }
+                        
                     }
                     
-                }
-                
+                }.background(Color.green).foregroundColor(Color.white)
+                Button("Supprimer"){
+                    showAlert = false
+                    let festivalZoneToSend = FestivalZoneVM(id_festivalZone: festivalZone.id_festivalZone, id_festival: festivalZone.id_festival, label_zone: festivalZone.label_zone, nbBenevolesNecessaires: inputNbBenevoles)
+                    festivalZoneDAO.deleteFestivalZone(id: festivalZone.id_festivalZone){result in
+                        switch(result){
+                            case .success(let succes):
+                                dismiss()
+                                debugPrint("TOut s'est bien passé")
+                            case .failure(let failure):
+                                showAlert = true
+                        }
+                        
+                    }
+                    
+                }.background(Color.red).foregroundColor(Color.white)
+                Spacer()
             }
+           
+            
             Spacer()
 
         }.alert(isPresented: $showAlert) {
