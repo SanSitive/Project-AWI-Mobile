@@ -10,7 +10,8 @@ import SwiftUI
 struct HomePageView: View {
     var body: some View {
         VStack {
-            Text("Welcome to the Festival App!")
+            Image("Festiland_BIG").resizable().aspectRatio(contentMode: .fit)
+            Text("Bienvenu sur notre application de gestion de festivals!")
                 .font(.largeTitle)
                 .padding()
         }
