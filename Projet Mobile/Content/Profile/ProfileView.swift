@@ -60,7 +60,6 @@ struct ProfileView: View {
         .navigationBarItems(trailing: Button(action: {
             if isEditMode {
                 // Save changes to the connectedUser here
-//                authIntent.perform(action: .update(volunteer))
                 volunteerIntent.perform(action: .update(volunteer))
                 connectedVolunteer.volunteer = volunteer
             }

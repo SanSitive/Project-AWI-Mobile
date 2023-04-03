@@ -12,7 +12,8 @@ struct CreneauListView: View {
     @Environment(\.editMode) var editMode
     @ObservedObject var creneauListVM: CreneauListVM
     let creneauIntent: CreneauIntent
-    
+    private let festivalIntent = FestivalIntent(model: FestivalVM(festival: FestivalDTO(id: 0, nom: "", annee: 0, isActive: false)))
+
     init() {
         let vm = CreneauListVM()
         let intent = CreneauIntent(viewModel: vm)
@@ -28,7 +29,7 @@ struct CreneauListView: View {
                         NavigationLink(destination: CreneauView(creneau: creneau, onSave: { updatedCreneau in
                             creneauIntent.perform(action: .update(updatedCreneau))
                         })) {
-                            Text("Creneau: \(creneau.id_jour) \(creneau.heureDebut):\(creneau.minuteDebut)-\(creneau.heureFin):\(creneau.minuteFin)")
+                            CreneauRowView(creneau: creneau, festivalIntent: festivalIntent)
                         }
                     }
                     .onDelete { indexSet in
@@ -55,6 +56,47 @@ struct CreneauListView: View {
         }
     }
 }
+
+struct CreneauRowView: View {
+    let creneau: CreneauVM
+    let festivalIntent: FestivalIntent
+    
+    var body: some View {
+        HStack {
+            Text("Creneau: \(creneau.heureDebut):\(creneau.minuteDebut)-\(creneau.heureFin):\(creneau.minuteFin)")
+            Spacer()
+            if creneau.id_jour != 0 {
+                let festivalId = creneau.id_jour
+                FestivalNameView(festivalId: festivalId, festivalIntent: festivalIntent)
+            }
+        }
+    }
+}
+
+struct FestivalNameView: View {
+    let festivalId: Int?
+    let festivalIntent: FestivalIntent
+    
+    @State private var festivalName: String?
+    
+    var body: some View {
+        if let festivalId = festivalId, let festivalName = festivalName {
+            Text("Festival: \(festivalName)")
+                .foregroundColor(.blue)
+                .onAppear {
+                    festivalIntent.fetchFestivalName(byId: festivalId) { result in
+                        switch result {
+                        case .success(let name):
+                            self.festivalName = name
+                        case .failure(let error):
+                            print("Error fetching festival name: \(error)")
+                        }
+                    }
+                }
+        }
+    }
+}
+
 
 struct CreneauListView_Previews: PreviewProvider {
     static var previews: some View {

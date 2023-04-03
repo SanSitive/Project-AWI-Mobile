@@ -229,6 +229,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FAFA70729DA035C00B7AD2A /* AffectationCreneau */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AffectationCreneau;
+			sourceTree = "<group>";
+		};
 		B721806029CC66A1003EFB19 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +336,7 @@
 		B7941F1329C3192B00FD67C1 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				6FAFA70729DA035C00B7AD2A /* AffectationCreneau */,
 				B7E9153129D722880084B614 /* Profile */,
 				B7E9152729D716EC0084B614 /* Creneau */,
 				B7E9151729D428840084B614 /* Jour */,
