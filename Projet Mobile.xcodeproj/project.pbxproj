@@ -85,6 +85,7 @@
 		B7E9152B29D718C40084B614 /* CreneauListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152A29D718C40084B614 /* CreneauListView.swift */; };
 		B7E9152D29D718D90084B614 /* CreateCreneauView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152C29D718D90084B614 /* CreateCreneauView.swift */; };
 		B7E9152F29D718E70084B614 /* CreneauFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9152E29D718E70084B614 /* CreneauFormView.swift */; };
+		B7E9153329D722B20084B614 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9153229D722B20084B614 /* ProfileView.swift */; };
 		B7FB26FA29CB07990081C181 /* SignInPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26F929CB07990081C181 /* SignInPageView.swift */; };
 		B7FB26FD29CB08C10081C181 /* alert.service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FC29CB08C10081C181 /* alert.service.swift */; };
 		B7FB26FF29CB0D6E0081C181 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */; };
@@ -193,6 +194,7 @@
 		B7E9152A29D718C40084B614 /* CreneauListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauListView.swift; sourceTree = "<group>"; };
 		B7E9152C29D718D90084B614 /* CreateCreneauView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCreneauView.swift; sourceTree = "<group>"; };
 		B7E9152E29D718E70084B614 /* CreneauFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreneauFormView.swift; sourceTree = "<group>"; };
+		B7E9153229D722B20084B614 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B7FB26F929CB07990081C181 /* SignInPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPageView.swift; sourceTree = "<group>"; };
 		B7FB26FC29CB08C10081C181 /* alert.service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = alert.service.swift; sourceTree = "<group>"; };
 		B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FAFA70729DA035C00B7AD2A /* AffectationCreneau */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AffectationCreneau;
+			sourceTree = "<group>";
+		};
 		B721806029CC66A1003EFB19 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +336,8 @@
 		B7941F1329C3192B00FD67C1 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				6FAFA70729DA035C00B7AD2A /* AffectationCreneau */,
+				B7E9153129D722880084B614 /* Profile */,
 				B7E9152729D716EC0084B614 /* Creneau */,
 				B7E9151729D428840084B614 /* Jour */,
 				B7E9151429D427940084B614 /* FestivalZone */,
@@ -336,9 +347,6 @@
 				B7941F1429C319EE00FD67C1 /* HomePageView.swift */,
 				B7941F1829C322FA00FD67C1 /* ManageFestivalView.swift */,
 				B7941F1A29C3256A00FD67C1 /* Footer.swift */,
-				B7FB26F929CB07990081C181 /* SignInPageView.swift */,
-				B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */,
-				B7E9152329D7088B0084B614 /* TestAuthView.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -670,6 +678,17 @@
 			path = Creneau;
 			sourceTree = "<group>";
 		};
+		B7E9153129D722880084B614 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B7FB26F929CB07990081C181 /* SignInPageView.swift */,
+				B7FB26FE29CB0D6E0081C181 /* LoginPageView.swift */,
+				B7E9152329D7088B0084B614 /* TestAuthView.swift */,
+				B7E9153229D722B20084B614 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		B7FB26FB29CB08AC0081C181 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +903,7 @@
 				B7E914B129CCA02F0084B614 /* ZoneListIntent.swift in Sources */,
 				B749B1AD29D702E80061DD72 /* JourItemView.swift in Sources */,
 				B749B1AF29D703AE0061DD72 /* JourListVM.swift in Sources */,
+				B7E9153329D722B20084B614 /* ProfileView.swift in Sources */,
 				B7E914FB29D1B91C0084B614 /* ZoneListVM.swift in Sources */,
 				B749B1A529D6D3240061DD72 /* FestivalZoneListVM.swift in Sources */,
 				B721808629CC9E69003EFB19 /* ZoneIntent.swift in Sources */,

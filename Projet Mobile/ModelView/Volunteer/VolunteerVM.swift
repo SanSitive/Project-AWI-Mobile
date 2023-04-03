@@ -23,6 +23,14 @@ class VolunteerVM: ObservableObject, Identifiable {
         self.id = id
         self.isAdmin = isAdmin
     }
+    
+    init(volunteer: VolunteerVM) {
+        self.email = volunteer.email
+        self.nom = volunteer.nom
+        self.prenom = volunteer.prenom
+        self.id = volunteer.id
+        self.isAdmin = volunteer.isAdmin
+    }
 
     init(volunteerDTO: VolunteerDTO) {
         self.email = volunteerDTO.email

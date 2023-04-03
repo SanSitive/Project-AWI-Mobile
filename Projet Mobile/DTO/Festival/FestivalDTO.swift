@@ -41,3 +41,8 @@ struct FestivalDTO : Codable{
 struct ResponseFestival: Decodable{
     var result : [FestivalDTO]
 }
+
+struct FestivalNameDTO: Decodable {
+    var nom: String
+}
+

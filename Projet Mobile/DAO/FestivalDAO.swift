@@ -80,7 +80,22 @@ class FestivalDAO {
         }
     }
     
-    
+    func fetchFestivalName(id: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/getFestivalName/\(id)") else {
+            completion(.failure(APIError.urlNotFound("\(baseURL)/getFestivalName/\(id)")))
+            return
+        }
+
+        Task {
+            switch await URLSession.shared.getJSON(from: url) as Result<FestivalNameDTO, APIError> {
+            case .success(let festivalNameDTO):
+                completion(.success(festivalNameDTO.nom))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 }
 
 
