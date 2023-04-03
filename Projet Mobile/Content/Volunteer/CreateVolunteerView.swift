@@ -7,18 +7,30 @@
 
 import SwiftUI
 
+
 struct CreateVolunteerView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var volunteerListVM: VolunteerListVM
     @StateObject private var volunteer = VolunteerVM(email: "", nom: "", prenom: "", id: -1, isAdmin: false)
-    
+    @State private var password: String = ""
+    var volunteerIntent: VolunteerIntent
+
+    private func generatePassword() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let dateString = dateFormatter.string(from: Date())
+        let name = volunteer.nom.trimmingCharacters(in: .whitespacesAndNewlines)
+        let surname = volunteer.prenom.trimmingCharacters(in: .whitespacesAndNewlines)
+        return "\(dateString)-\(name)-\(surname)"
+    }
+
     var body: some View {
         NavigationView {
             VStack {
-                VolunteerFormView(volunteer: volunteer, isEditMode: .constant(false))
+                VolunteerFormView(volunteer: volunteer, isEditMode: .constant(false), password: $password)
                 
                 Button(action: {
-                    VolunteerIntent.create(volunteer, volunteerListVM).process()
+                    password = generatePassword()
+                    volunteerIntent.perform(action: .create(volunteer, password: password))
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Create Volunteer")
@@ -35,12 +47,16 @@ struct CreateVolunteerView: View {
                 presentationMode.wrappedValue.dismiss()
             })
         }
+        .onAppear {
+            password = generatePassword()
+        }
     }
 }
 
 struct CreateVolunteerView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateVolunteerView(volunteerListVM: VolunteerListVM())
+        let viewModel = VolunteerListVM()
+        let intent = VolunteerIntent(viewModel: viewModel)
+        return CreateVolunteerView(volunteerIntent: intent)
     }
 }
-

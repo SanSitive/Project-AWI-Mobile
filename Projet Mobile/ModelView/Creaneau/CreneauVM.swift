@@ -6,50 +6,35 @@
 //
 
 import Foundation
+import SwiftUI
 
-class CreneauVM: ObservableObject, Hashable, Equatable{
-    @Published var id : Int
-    @Published var id_jour : Int
-    @Published var heureDebut : Int
-    @Published var heureFin : Int
-    @Published var minuteDebut : Int
-    @Published var minuteFin : Int
+class CreneauVM: ObservableObject, Identifiable {
+    @Published var id: Int
+    @Published var id_jour: Int
+    @Published var heureDebut: Int
+    @Published var heureFin: Int
+    @Published var minuteDebut: Int
+    @Published var minuteFin: Int
 
-    //State management
-    @Published var state : CreneauState = .ready {
-        didSet {
-            switch state {
-            case .error:
-                debugPrint("error")
-                self.state = .ready
-                break
-            case .ready:
-                debugPrint("CreneauViewModel: ready state")
-                debugPrint("--------------------------------------")
-                break
-            default:
-                break
-            }
-        }
+    init(id: Int, id_jour: Int, heureDebut: Int, heureFin: Int, minuteDebut: Int, minuteFin: Int) {
+        self.id = id
+        self.id_jour = id_jour
+        self.heureDebut = heureDebut
+        self.heureFin = heureFin
+        self.minuteDebut = minuteDebut
+        self.minuteFin = minuteFin
     }
-    
-    init(creneau: CreneauDTO) {
-        self.id = creneau.id
-        self.id_jour = creneau.id_jour
-        self.heureDebut = creneau.heureDebut
-        self.heureFin = creneau.heureFin
-        self.minuteDebut = creneau.minuteDebut
-        self.minuteFin = creneau.minuteFin
+
+    init(creneauDTO: CreneauDTO) {
+        self.id = creneauDTO.id
+        self.id_jour = creneauDTO.id_jour
+        self.heureDebut = creneauDTO.heureDebut
+        self.heureFin = creneauDTO.heureFin
+        self.minuteDebut = creneauDTO.minuteDebut
+        self.minuteFin = creneauDTO.minuteFin
     }
-    
-    
-    static func == (lhs: CreneauVM, rhs: CreneauVM) -> Bool {
-        return lhs.id == rhs.id
+
+    func copy() -> CreneauVM {
+        return CreneauVM(id: self.id, id_jour: self.id_jour, heureDebut: self.heureDebut, heureFin: self.heureFin, minuteDebut: self.minuteDebut, minuteFin: self.minuteFin)
     }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
-    }
-    
-    
 }

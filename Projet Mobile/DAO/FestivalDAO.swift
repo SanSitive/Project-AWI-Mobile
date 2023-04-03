@@ -21,12 +21,13 @@ class FestivalDAO {
             case .success(let festivalDTOs):
                 let festivals = festivalDTOs.map { $0.toModel() }
                 completion(.success(festivals))
-            case .failure(let error):                completion(.failure(error))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
-    func createFestival(festival: FestivalVM, completion: @escaping (Result<Int, Error>) -> Void) {
+    func createFestival(festival: FestivalVM, completion: @escaping (Result<FestivalVM, Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completion(.failure(APIError.urlNotFound(baseURL)))
             return
@@ -35,9 +36,10 @@ class FestivalDAO {
         let festivalDTO = FestivalDTO.fromModel(festival)
 
         Task {
-            switch await URLSession.shared.create(from: url, element: festivalDTO) as Result<Int, APIError> {
-            case .success(let id):
-                completion(.success(id))
+            switch await URLSession.shared.create(from: url, element: festivalDTO) as Result<FestivalDTO, APIError> {
+            case .success(let festivalDTO):
+                let festival = festivalDTO.toModel()
+                completion(.success(festival))
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -78,7 +80,22 @@ class FestivalDAO {
         }
     }
     
-    
+    func fetchFestivalName(id: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/getFestivalName/\(id)") else {
+            completion(.failure(APIError.urlNotFound("\(baseURL)/getFestivalName/\(id)")))
+            return
+        }
+
+        Task {
+            switch await URLSession.shared.getJSON(from: url) as Result<FestivalNameDTO, APIError> {
+            case .success(let festivalNameDTO):
+                completion(.success(festivalNameDTO.nom))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 }
 
 

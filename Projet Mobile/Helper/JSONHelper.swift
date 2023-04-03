@@ -14,15 +14,30 @@ struct JSONHelper{
       return fileContents
    }
    
-   static func decode<T: Decodable>(data: Data) async -> T?{
-      let decoder = JSONDecoder()
-      guard let decoded = try? decoder.decode(T.self, from: data) else {
-         return nil
-      }
-      return decoded
-   }
    static func encode<T: Encodable>(data: T) async -> Data?{
       let encoder = JSONEncoder()
       return try? encoder.encode(data)
    }
+    
+    static func decode<T: Decodable>(data: Data) -> T? {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let customDateDecodingStrategy = JSONDecoder.DateDecodingStrategy.custom { decoder in
+                let container = try decoder.singleValueContainer()
+                let dateString = try container.decode(String.self)
+                guard let date = dateFormatter.date(from: dateString) else {
+                    throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date format")
+                }
+                return date
+            }
+            
+            let decoder = JSONDecoder() // création d'un décodeur
+            decoder.dateDecodingStrategy = customDateDecodingStrategy
+            if let decoded = try? decoder.decode(T.self, from: data) {
+                debugPrint("test \(decoded)")
+                return decoded
+            }
+            return nil
+        }
 }

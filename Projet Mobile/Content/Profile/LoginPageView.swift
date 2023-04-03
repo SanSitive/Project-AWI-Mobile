@@ -7,12 +7,19 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct LoginPageView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var connectedVolunteer: ConnectedVolunteer
+
+    private var authIntent: AuthIntent {
+        AuthIntent(connectedVolunteer: connectedVolunteer)
+    }
     
     var body: some View {
-        NavigationStack{
+        NavigationView {
             VStack {
                 TextField("Email", text: $email)
                     .padding()
@@ -24,12 +31,10 @@ struct LoginPageView: View {
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                NavigationLink(destination: HomePageView()) {
-    //                
-                    Button("Se connecter"){
-                        debugPrint("test")
-                        
-                    }
+                Button(action: {
+                    authIntent.perform(action: .login(username: email, password: password))
+                }) {
+                    Text("Se connecter")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
@@ -47,7 +52,6 @@ struct LoginPageView: View {
                 Spacer()
 
                 HStack {
-    //                Text(appSettings.API_URL)
                     Text("Pas encore inscrit ?")
                     NavigationLink(destination: SignInPageView()) {
                         Text("S'inscrire")
@@ -59,14 +63,12 @@ struct LoginPageView: View {
             .padding()
             .navigationTitle("Se connecter")
         }
-        
     }
 }
 
 struct LoginPageView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            LoginPageView()
-        }
+        LoginPageView()
+            .environmentObject(ConnectedVolunteer())
     }
 }

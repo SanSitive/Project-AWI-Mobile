@@ -7,45 +7,56 @@
 
 import Foundation
 
-
-struct AuthDTO : Codable {
-    var id: Int
-    var prenom: String
-    var nom: String
-    var email: String
-    var isAdmin: Bool
+struct UserCredentials: Codable {
+    let email: String
+    let password: String
 }
 
-let appSettings = MyEnvVariables()
+struct SignupData: Codable {
+    let prenom: String
+    let nom: String
+    let email: String
+    let password: String
+    let isAdmin: Bool
+}
 
-class AuthDAO{
-    private static let authUrl = URL(string: appSettings.API_URL)!
-  
-    static public func tryConnect(email: String, pwd: String, completion: @escaping(Result<AuthDTO?,Error>) -> Void) async -> Void {
-        let jsonString = "{ \"email\": \"\(email)\", \"password\": \"\(pwd)\" }"
-        guard let jsonData = jsonString.data(using: .utf8) else {return }
-        
-        var request = URLRequest(url: URL(string: self.authUrl.absoluteString+"/authMobile/signinMobile")!)
-        request.httpMethod = "POST"
-        request.httpBody = jsonData
-        request.setValue("application/json", forHTTPHeaderField: "Content-type")
-        
-        /*let dataTask*/_ = URLSession.shared.uploadTask(with: request, from: jsonData) { (data, response, error) in
-          guard let data = data, error == nil else {
-            return completion(.failure(error!))
-          }
-          print(String(data: data, encoding: .utf8)!)
-          Task {
-            do {
+class AuthDAO {
+    private let baseURLLogin = MyEnvVariables().API_URL + "authMobile/signinMobile"
+    private let baseURLSignup = MyEnvVariables().API_URL + "authMobile/signup"
 
-              let decoded : AuthDTO? = await JSONHelper.decode(data: data)
-              if let decoded = decoded {
-                completion(.success(decoded))
-              } else {
-                //completion(.failure())
-              }
+    func login(username: String, password: String, completion: @escaping (Result<VolunteerDTO, Error>) -> Void) {
+        guard let url = URL(string: baseURLLogin) else {
+            completion(.failure(APIError.urlNotFound(baseURLLogin)))
+            return
+        }
+        
+        let credentials = UserCredentials(email: username, password: password)
+
+        Task {
+            switch await URLSession.shared.postJSON(from: url, element: credentials) as Result<VolunteerDTO, APIError> {
+            case .success(let volunteerDTO):
+                completion(.success(volunteerDTO))
+            case .failure(let error):
+                completion(.failure(error))
             }
-          }
+        }
+    }
+    
+    func signup(firstName: String, lastName: String, email: String, password: String, isAdmin: Bool, completion: @escaping (Result<VolunteerDTO, Error>) -> Void) {
+        guard let url = URL(string: baseURLSignup) else {
+            completion(.failure(APIError.urlNotFound(baseURLSignup)))
+            return
+        }
+            
+        let signupData = SignupData(prenom: firstName, nom: lastName, email: email, password: password, isAdmin: isAdmin)
+
+        Task {
+            switch await URLSession.shared.postJSON(from: url, element: signupData) as Result<VolunteerDTO, APIError> {
+            case .success(let volunteerDTO):
+                completion(.success(volunteerDTO))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

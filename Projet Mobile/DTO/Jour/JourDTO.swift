@@ -13,8 +13,8 @@ struct JourDTO : Codable{
       var date : Date
       var nom : String
       var heureOuverture : Int
+        var minuteOuverture : Int
       var heureFermeture : Int
-      var minuteOuverture : Int
       var minuteFermeture : Int
     
     
@@ -29,7 +29,7 @@ struct JourDTO : Codable{
         self.minuteFermeture = jour.minuteFermeture
     }
 
-    init(id: Int, nom: String, id_festival: Int, date: Date, heureOuverture: Int, heureFermeture: Int, minuteOuverture: Int, minuteFermeture: Int) {
+    init(id: Int, id_festival: Int, nom: String,  date: Date, heureOuverture: Int,minuteOuverture: Int, heureFermeture: Int,  minuteFermeture: Int) {
         self.id = id
         self.id_festival = id_festival
         self.date = date

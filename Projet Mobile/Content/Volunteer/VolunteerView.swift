@@ -11,11 +11,13 @@ struct VolunteerView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var volunteer: VolunteerVM
     @State private var isEditMode: Bool = false
+    @State private var password: String = ""
+    var onSave: (VolunteerVM) -> Void
 
     var body: some View {
         VStack {
             if isEditMode {
-                VolunteerFormView(volunteer: volunteer, isEditMode: $isEditMode)
+                VolunteerFormView(volunteer: volunteer, isEditMode: $isEditMode, password: $password)
             } else {
                 VStack {
                     Spacer()
@@ -25,31 +27,6 @@ struct VolunteerView: View {
                         .frame(width: 150, height: 150)
                     Spacer()
                     VStack(alignment: .leading, spacing: 10) {
-//                        HStack {
-//                            Text("Nom :")
-//                                .font(.headline)
-//                            Spacer()
-//                            Text(volunteer.nom)
-//                        }
-//                        HStack {
-//                            Text("Prénom :")
-//                                .font(.headline)
-//                            Spacer()
-//                            Text(volunteer.prenom)
-//                        }
-//                        HStack {
-//                            Text("Email :")
-//                                .font(.headline)
-//                            Spacer()
-//                            Text(volunteer.email)
-//                        }
-//                        HStack {
-//                            Text("Administrateur :")
-//                                .font(.headline)
-//                            Spacer()
-//                            Text(volunteer.isAdmin ? "Oui" : "Non")
-//                        }
-
                         Text("Nom: \(volunteer.nom)")
                             .font(.title2)
                             .fontWeight(.bold)
@@ -73,6 +50,9 @@ struct VolunteerView: View {
             }
         }
         .navigationBarItems(trailing: Button(action: {
+            if isEditMode {
+                onSave(volunteer)
+            }
             isEditMode.toggle()
         }) {
             Text(isEditMode ? "Enregistrer" : "Modifier")

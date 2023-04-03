@@ -9,33 +9,12 @@ import SwiftUI
 
 struct HomePageView: View {
     var body: some View {
-            NavigationView {
-                        VStack {
-                            Text("Welcome to the Festival App!")
-                                .font(.largeTitle)
-                                .padding()
-                            NavigationLink(destination: FestivalListView(viewModel: FestivalListVM(festivals: []) )) {
-                                Text("Liste de festival")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
-                            }
-                            NavigationLink(destination: VolunteerListView()) {
-                                Text("Bénévole")
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.green)
-                                    .cornerRadius(10)
-                            }
-                            Spacer()
-                            Footer()
-                            
-                        }
-                    }
-        
+        VStack {
+            Image("Festiland_BIG").resizable().aspectRatio(contentMode: .fit)
+            Text("Bienvenu sur notre application de gestion de festivals!")
+                .font(.largeTitle)
+                .padding()
+        }
     }
 }
 

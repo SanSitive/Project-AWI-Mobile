@@ -69,6 +69,24 @@ struct FestivalIntent {
         }
     }
     
+
+    func fetchFestivalName(byId id: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let url = URL(string: "\(API_URL)/getFestivalName/\(id)") else {
+            completion(.failure(APIError.urlNotFound(API_URL)))
+            return
+        }
+
+        Task {
+            switch await URLSession.shared.getJSON(from: url) as Result<FestivalNameDTO, APIError> {
+            case .success(let festivalNameDTO):
+                completion(.success(festivalNameDTO.nom))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    
     func updateFestival() async {
         //Should make the update call to update it
     }
