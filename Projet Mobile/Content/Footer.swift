@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct Footer: View {
+    @EnvironmentObject var connectedVolunteer: ConnectedVolunteer
+
+    private var volunteer: VolunteerVM {
+        return VolunteerVM(volunteer: connectedVolunteer.volunteer!)
+    }
+    
     var body: some View {
         TabView {
             HomePageView()
@@ -28,16 +34,17 @@ struct Footer: View {
                     Text("Bénévoles")
                 }
 
-            ScheduleView()
+            LoginPageView()
+                .environmentObject(connectedVolunteer)
                 .tabItem {
                     Image(systemName: "calendar")
-                    Text("Créneaux")
+                    Text("Se connecter")
                 }
                 
-            ZonesView()
+            ProfileView(volunteerIntent: VolunteerIntent(viewModel: VolunteerListVM())).environmentObject(connectedVolunteer)
                 .tabItem {
-                    Image(systemName: "map")
-                    Text("Zones")
+                    Image(systemName: "person")
+                    Text("Profile")
                 }
         }
     }
